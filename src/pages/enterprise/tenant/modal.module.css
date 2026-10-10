@@ -1,0 +1,215 @@
+/* 弹窗样式，取自原型 tenant-management.css「弹窗」一节 */
+.modal :global(.ant-modal-content) {
+  padding: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: var(--tenant-modal-shadow);
+}
+
+.modal :global(.ant-modal-header) {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 64px 0 24px;
+  border-radius: 0;
+}
+
+.modal :global(.ant-modal-title) {
+  color: var(--tenant-modal-title);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.modal :global(.ant-modal-close) {
+  top: 13px;
+  inset-inline-end: 24px;
+  width: 32px;
+  height: 32px;
+  color: var(--tenant-modal-close);
+}
+
+.modal :global(.ant-modal-close:hover) {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.closeX {
+  font-size: 26px;
+  line-height: 1;
+}
+
+.modal :global(.ant-modal-body) {
+  max-height: calc(100vh - 48px - 58px - 62px);
+  overflow: auto;
+  padding: 2px 24px 20px;
+  line-height: 1.5;
+}
+
+.modal :global(.ant-modal-footer) {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 24px 18px;
+}
+
+.modal :global(.ant-modal-footer .ant-btn) {
+  min-width: 72px;
+  margin-inline-start: 0 !important;
+}
+
+/* 表单 */
+.formRow {
+  margin-bottom: 18px;
+}
+
+.formRow > label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--tenant-form-label);
+  font-size: 14px;
+}
+
+.required::before {
+  content: '*';
+  margin-right: 4px;
+  color: var(--tenant-required);
+}
+
+.block {
+  width: 100%;
+}
+
+.fieldError {
+  min-height: 17px;
+  margin-top: 5px;
+  color: var(--tenant-required);
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.phoneGroup {
+  width: 100%;
+}
+
+.phoneCode {
+  width: 40%;
+}
+
+.phoneInput {
+  width: 60%;
+}
+
+/* 转让负责人 */
+.ownerPanel {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 4px;
+  background: var(--tenant-owner-panel-bg);
+  color: var(--tenant-value);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ownerNote {
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: var(--tenant-note-text);
+  background: var(--tenant-note-bg);
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* 添加客户认证 */
+.infoTip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 18px;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: var(--tenant-tip-text);
+  background: var(--tenant-tip-bg);
+  font-size: 13px;
+}
+
+.infoTip i {
+  width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--tenant-tip-icon);
+  font-style: normal;
+}
+
+.verifyRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 92px;
+  gap: 8px;
+  align-items: start;
+}
+
+.verifyBtn {
+  height: 36px;
+  margin-top: 29px;
+}
+
+.verifyMsg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: -9px 0 14px;
+  font-size: 12px;
+}
+
+.ok {
+  color: var(--tenant-verify-ok);
+}
+
+.err {
+  color: var(--tenant-verify-err);
+}
+
+.card {
+  padding: 16px;
+  border-radius: 10px;
+  background: var(--tenant-card-bg);
+}
+
+.grid3 {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 16px;
+}
+
+/* 详情 */
+.detailTitle {
+  margin: 3px 0 12px;
+  color: var(--tenant-title);
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.detailTitleNext {
+  margin-top: 20px;
+}
+
+/* 删除 */
+.deleteCopy {
+  color: var(--tenant-delete-text);
+  line-height: 1.7;
+}
+
+.deleteCopy ul {
+  margin: 9px 0 0;
+  padding-left: 20px;
+}

@@ -1,0 +1,264 @@
+/* 客户认证页签，尺寸取自原型 tenant-management.css */
+/* 客户认证概览 */
+.authOverview {
+  display: grid;
+  grid-template-columns: 363px minmax(0, 1fr);
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.authCountCard {
+  position: relative;
+  height: 296px;
+  overflow: hidden;
+  padding: 20px;
+  border-radius: 2px;
+  background: linear-gradient(145deg, var(--tenant-auth-from), var(--tenant-auth-to));
+}
+
+.authCountCard::before {
+  content: '';
+  position: absolute;
+  inset: 52px -40px -80px -100px;
+  background: linear-gradient(
+    145deg,
+    var(--tenant-auth-deco-from),
+    var(--tenant-auth-deco-mid) 48%,
+    transparent 49%
+  );
+  transform: skewX(-18deg);
+  opacity: 0.75;
+}
+
+.authTitle {
+  position: relative;
+  z-index: 1;
+  color: var(--tenant-title-strong);
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.authCircle {
+  position: relative;
+  z-index: 1;
+  width: 196px;
+  height: 196px;
+  margin: 15px auto 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 22px solid var(--tenant-auth-ring);
+  border-radius: 50%;
+  background: var(--tenant-auth-circle-bg);
+  box-shadow: inset 0 0 0 17px var(--tenant-auth-ring-inner);
+}
+
+.authNumber {
+  color: var(--tenant-title);
+  font-size: 64px;
+  line-height: 68px;
+  font-weight: 600;
+}
+
+.authCountLabel {
+  color: var(--tenant-title);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.helpCard {
+  min-height: 296px;
+  padding: 20px 24px;
+  background: var(--tenant-card-bg);
+  color: var(--tenant-muted);
+}
+
+.helpTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 13px;
+  color: var(--tenant-title);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.helpIcon {
+  width: 17px;
+  height: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--tenant-help-icon);
+  font-size: 12px;
+}
+
+.helpBlock {
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.helpBlock strong {
+  display: block;
+  color: var(--tenant-title);
+  font-weight: 600;
+}
+
+.helpBlock ul {
+  margin: 5px 0 0;
+  padding-left: 22px;
+}
+
+/* 客户编码列表 */
+.authList {
+  margin-top: 18px;
+}
+
+.authListHead {
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.authListHead h2 {
+  margin: 0;
+  color: var(--tenant-title-strong);
+  font-size: 18px;
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--tenant-link);
+  background: var(--tenant-tag-bg);
+  font-size: 12px;
+}
+
+.tableWrap {
+  height: 300px;
+  border: 1px solid var(--tenant-table-border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tableWrap :global(.ant-table),
+.tableWrap :global(.ant-table-container),
+.tableWrap :global(.ant-table-header) {
+  border-radius: 0 !important;
+  color: var(--tenant-cell-text);
+  font-size: 14px;
+}
+
+.tableWrap :global(.ant-table-thead > tr > th),
+.tableWrap :global(.ant-table-tbody > tr > td) {
+  height: 48px;
+  padding: 10px 12px !important;
+  border-right: 1px solid var(--tenant-cell-border);
+  border-bottom: 1px solid var(--tenant-cell-border);
+  color: var(--tenant-cell-text);
+  line-height: 1.5;
+}
+
+.tableWrap :global(.ant-table-thead > tr > th) {
+  background: var(--tenant-head-bg);
+  color: var(--tenant-head-text);
+  font-weight: 600;
+  border-radius: 0 !important;
+}
+
+.tableWrap :global(.ant-table-thead > tr > th::before) {
+  display: none;
+}
+
+.tableWrap :global(.ant-table-thead > tr > th:nth-last-child(-n + 2)),
+.tableWrap :global(.ant-table-tbody > tr > td:last-child) {
+  border-right: 0;
+}
+
+.tableWrap :global(.ant-table-tbody > tr.ant-table-row:hover > td) {
+  background: #fff;
+}
+
+.tableWrap :global(.ant-table-tbody > tr.ant-table-placeholder > td) {
+  height: 195px;
+  border-right: 0;
+  color: var(--tenant-empty);
+  text-align: center;
+}
+
+.tableWrap :global(.ant-table-tbody > tr.ant-table-placeholder:hover > td) {
+  background: #fff !important;
+}
+
+/* 分页（原型 .tn-pagination） */
+.pagination {
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--tenant-btn-text);
+  font-size: 13px;
+}
+
+.pagination :global(.ant-pagination) {
+  font-size: 13px;
+  color: var(--tenant-btn-text);
+}
+
+.pagination :global(.ant-pagination li) {
+  margin-inline-end: 8px;
+}
+
+.pagination :global(.ant-pagination .ant-pagination-options) {
+  margin-inline-start: 0;
+}
+
+.pagination :global(.ant-pagination li:last-child) {
+  margin-inline-end: 0;
+}
+
+.pagination :global(.ant-pagination-item),
+.pagination :global(.ant-pagination-prev button),
+.pagination :global(.ant-pagination-next button) {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid var(--tenant-page-border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--tenant-btn-text);
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.pagination :global(.ant-pagination-item a) {
+  padding: 0;
+  color: inherit;
+}
+
+.pagination :global(.ant-pagination-item-active) {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+}
+
+.pagination :global(.ant-pagination-item-active a),
+.pagination :global(.ant-pagination-item-active:hover a) {
+  color: #fff;
+}
+
+.pagination :global(.ant-pagination-disabled button) {
+  color: var(--color-text-4);
+  background: var(--color-bg-soft);
+  cursor: not-allowed;
+}
+
+@media (max-width: 1150px) {
+  .authOverview {
+    grid-template-columns: 310px minmax(0, 1fr);
+  }
+}

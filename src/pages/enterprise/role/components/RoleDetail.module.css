@@ -1,0 +1,207 @@
+/* 角色详情：摘要卡、页签、功能权限树（取自原型 role-management.css） */
+/* ---------- 详情 ---------- */
+.back {
+  margin-bottom: 16px;
+}
+
+.summary {
+  padding: 22px 26px;
+  border: 1px solid var(--role-card-border);
+  border-radius: 12px;
+  background: #fff;
+}
+
+.summaryTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.summaryTitle h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #fff;
+  background: linear-gradient(145deg, var(--role-avatar-from), var(--role-avatar-to));
+  font-size: 22px;
+}
+
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.label {
+  margin-bottom: 8px;
+  color: var(--role-label);
+  font-size: 13px;
+}
+
+.value {
+  color: var(--role-value);
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.tabs :global(.ant-tabs-nav) {
+  height: 58px;
+  margin: 0;
+}
+
+.tabs :global(.ant-tabs-nav)::before {
+  border-bottom-color: var(--role-tabs-line);
+}
+
+.tabs :global(.ant-tabs-content-holder) {
+  display: none;
+}
+
+.tabs :global(.ant-tabs-tab) {
+  height: 58px;
+  padding: 0 6px;
+  font-size: 15px;
+  color: var(--role-tab);
+}
+
+.tabs :global(.ant-tabs-tab:hover),
+.tabs :global(.ant-tabs-tab-btn:active) {
+  color: var(--role-tab);
+}
+
+.tabs :global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+  color: var(--role-value);
+  font-weight: 600;
+  text-shadow: none;
+}
+
+.tabs :global(.ant-tabs-ink-bar) {
+  height: 2px !important;
+  background: var(--role-value);
+}
+
+.detailActions {
+  display: flex;
+  gap: 8px;
+}
+
+.panel {
+  padding: 16px 12px;
+  border: 1px solid var(--role-card-border);
+  border-top: 0;
+}
+
+.permWarning {
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  border: 1px solid var(--role-warn-border);
+  border-radius: 4px;
+  color: var(--role-warn-text);
+  background: var(--role-warn-bg);
+}
+
+.tools {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+/* ---------- 权限树（antd Tree，行样式还原原型 .perm-node-row） ---------- */
+.permTree {
+  height: calc(100vh - 430px);
+  min-height: 280px;
+  overflow: auto;
+  padding: 4px 0 20px;
+}
+
+.permTree :global(.ant-tree) {
+  background: transparent;
+  color: var(--color-text);
+}
+
+.permTree :global(.ant-tree .ant-tree-treenode) {
+  width: 100%;
+  min-height: 34px;
+  align-items: center;
+  padding: 3px 8px;
+  margin: 0;
+}
+
+.permTree :global(.ant-tree .ant-tree-treenode:hover) {
+  background: var(--role-row-hover);
+}
+
+/* 每级缩进 26px；原型 padding-left = depth*26 + 4 替换了行本身的 8px，故首级 -4px */
+.permTree :global(.ant-tree-indent-unit) {
+  width: 26px;
+}
+
+.permTree :global(.ant-tree-indent-unit:first-child) {
+  margin-left: -4px;
+}
+
+.permTree :global(.ant-tree .ant-tree-switcher) {
+  width: 22px;
+  height: 22px;
+  margin-right: 7px;
+  line-height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+}
+
+.permTree :global(.ant-tree .ant-tree-switcher)::before {
+  display: none;
+}
+
+/* 原型原生复选框自带 margin 3px 3px 3px 4px，再加 gap 7px */
+.permTree :global(.ant-tree .ant-tree-checkbox) {
+  margin: 0 10px 0 4px;
+  align-self: center;
+}
+
+.permTree :global(.ant-tree .ant-tree-node-content-wrapper) {
+  min-height: 0;
+  padding: 0;
+  line-height: 1.5;
+  cursor: default;
+}
+
+.permTree :global(.ant-tree .ant-tree-node-content-wrapper:hover) {
+  background: transparent;
+}
+
+.permTree :global(.ant-tree .ant-tree-switcher) .permToggle:global(.ant-tree-switcher-icon) {
+  display: inline-block;
+  font-size: 14px;
+  color: var(--role-tab);
+  transition: transform 0.15s;
+}
+
+.permTree :global(.ant-tree .ant-tree-switcher) .permToggle.open {
+  transform: rotate(90deg);
+}
+
+.permName mark {
+  padding: 0;
+  color: var(--color-primary);
+  background: transparent;
+}
+
+@media (max-width: 1050px) {
+  .summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,306 @@
+/* 尺寸与颜色取自原型 role-management.css */
+.page {
+  padding: 16px;
+  color: var(--role-ink);
+}
+
+.page ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.page ::-webkit-scrollbar-thumb {
+  background: var(--role-scrollbar);
+  border-radius: 4px;
+}
+
+/* ---------- 通用控件 ---------- */
+.input:global(.ant-input) {
+  width: 240px;
+  height: 34px;
+  padding: 0 12px;
+  border-color: var(--role-input-border);
+  border-radius: 4px;
+  color: var(--role-ink);
+}
+
+.input:global(.ant-input):focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--role-focus-ring);
+}
+
+.select:global(.ant-select) {
+  width: 240px;
+  height: 34px;
+}
+
+.select :global(.ant-select-selector),
+.sizeSelect :global(.ant-select-selector) {
+  border-color: var(--role-input-border) !important;
+  border-radius: 4px !important;
+  color: var(--role-ink);
+}
+
+/* 原型为原生 select，首项「请选择…」以正文色显示 */
+.select :global(.ant-select-selection-placeholder) {
+  color: var(--role-ink);
+}
+
+.select:global(.ant-select-focused) :global(.ant-select-selector) {
+  border-color: var(--color-primary) !important;
+  box-shadow: var(--role-focus-ring) !important;
+}
+
+.btn:global(.ant-btn) {
+  height: 34px;
+  padding: 0 17px;
+  border-color: var(--role-input-border);
+  border-radius: 3px;
+  color: var(--role-ink);
+  box-shadow: none;
+}
+
+.btn:global(.ant-btn):not(:disabled):hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: #fff;
+}
+
+.btn:global(.ant-btn-primary) {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.btn:global(.ant-btn-primary):not(:disabled):hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
+  color: #fff;
+}
+
+.btn:global(.ant-btn):disabled {
+  color: var(--role-btn-disabled);
+  background: var(--role-btn-disabled-bg);
+}
+
+/* ---------- 列表：筛选 ---------- */
+.filter {
+  min-height: 52px;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.add {
+  margin-left: auto;
+}
+
+/* ---------- 表格 ---------- */
+.tableWrap {
+  overflow: hidden;
+  border: 1px solid var(--role-table-wrap-border);
+  border-radius: 4px;
+}
+
+.roleTableWrap {
+  height: 355px;
+}
+
+.userTableWrap {
+  height: calc(100vh - 465px);
+  min-height: 260px;
+}
+
+.table :global(.ant-table),
+.table :global(.ant-table-container),
+.table :global(.ant-table-header),
+.table :global(.ant-table-thead > tr > th) {
+  border-radius: 0 !important;
+}
+
+.table :global(.ant-table-thead > tr > th),
+.table :global(.ant-table-tbody > tr > td) {
+  height: 48px;
+  padding: 10px 12px;
+  border-right: 1px solid var(--role-table-border);
+  border-bottom: 1px solid var(--role-table-border);
+  color: var(--role-table-text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.table :global(.ant-table-thead > tr > th) {
+  background: var(--role-table-head-bg);
+  color: var(--role-table-head);
+  font-weight: 600;
+}
+
+.table :global(.ant-table-thead > tr > th)::before {
+  display: none;
+}
+
+.table :global(.ant-table-thead > tr > th:last-child),
+.table :global(.ant-table-thead > tr > th:nth-last-child(2):has(+ .ant-table-cell-scrollbar)),
+.table :global(.ant-table-tbody > tr > td:last-child) {
+  border-right: 0;
+}
+
+.table :global(.ant-table-tbody > tr.ant-table-row:hover > td) {
+  background: var(--role-row-hover);
+}
+
+.table :global(.ant-table-placeholder > td) {
+  padding: 0 !important;
+  border-right: 0;
+}
+
+.table :global(.ant-table-placeholder:hover > td) {
+  background: #fff !important;
+}
+
+.empty {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--role-empty);
+}
+
+.tag {
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+}
+
+.tagSystem {
+  color: var(--role-tag-system);
+  background: var(--role-tag-system-bg);
+}
+
+.tagCustom {
+  color: var(--role-tag-custom);
+  background: var(--role-tag-custom-bg);
+}
+
+.tagScope {
+  color: var(--role-tag-scope);
+  background: var(--role-tag-scope-bg);
+}
+
+.tagOrg {
+  margin-right: 4px;
+  color: var(--role-tag-org);
+  background: var(--role-tag-org-bg);
+}
+
+.link {
+  padding: 0 5px;
+  border: 0;
+  color: var(--role-link);
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.link:hover {
+  color: var(--color-primary);
+}
+
+.link.linkDanger {
+  color: var(--role-link-danger);
+}
+
+/* ---------- 分页 ---------- */
+.pagination {
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.pagination :global(.ant-pagination) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--role-ink);
+}
+
+.pagination :global(.ant-pagination)::after {
+  display: none;
+}
+
+.pagination :global(.ant-pagination) > li {
+  margin: 0 !important;
+}
+
+.pagination :global(.ant-pagination-item),
+.pagination :global(.ant-pagination-prev),
+.pagination :global(.ant-pagination-next),
+.pageBtn {
+  min-width: 30px;
+  height: 30px;
+  line-height: 28px;
+}
+
+.pagination :global(.ant-pagination-item),
+.pagination :global(.ant-pagination-prev button),
+.pagination :global(.ant-pagination-next button),
+.pageBtn {
+  border: 1px solid var(--role-page-border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--role-ink);
+  cursor: pointer;
+}
+
+.pagination :global(.ant-pagination-item a) {
+  padding: 0;
+  color: inherit;
+}
+
+.pagination :global(.ant-pagination-prev button),
+.pagination :global(.ant-pagination-next button) {
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+
+.pagination :global(.ant-pagination-item-active),
+.pageActive {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.pagination :global(.ant-pagination-item-active a),
+.pagination :global(.ant-pagination-item-active:hover a) {
+  color: #fff;
+}
+
+.pagination :global(.ant-pagination-disabled button) {
+  color: var(--role-page-disabled);
+  background: var(--role-page-disabled-bg);
+  cursor: not-allowed;
+}
+
+.pagination :global(.ant-pagination-options) {
+  margin: 0;
+}
+
+.pagination :global(.ant-pagination-options .ant-select),
+.sizeSelect:global(.ant-select) {
+  width: 110px;
+  height: 30px;
+}
+
+@media (max-width: 1050px) {
+  .filter {
+    flex-wrap: wrap;
+  }
+
+  .add {
+    margin-left: 0;
+  }
+}

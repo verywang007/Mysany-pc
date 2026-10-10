@@ -1,0 +1,227 @@
+/* 新增 / 编辑弹窗与确认弹窗（取自原型 role-management.css） */
+/* ---------- 确认弹窗按钮（与页面 .btn 一致） ---------- */
+.confirm :global(.ant-btn) {
+  height: 34px;
+  padding: 0 17px;
+  border-color: var(--role-input-border);
+  border-radius: 3px;
+  color: var(--role-ink);
+  box-shadow: none;
+}
+
+.confirm :global(.ant-btn):not(:disabled):hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: #fff;
+}
+
+.confirm :global(.ant-btn-primary) {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.confirm :global(.ant-btn-primary):not(:disabled):hover {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
+  color: #fff;
+}
+
+.confirm :global(.ant-btn-primary.ant-btn-dangerous),
+.confirm :global(.ant-btn-primary.ant-btn-dangerous):not(:disabled):hover {
+  border-color: var(--role-danger-btn);
+  background: var(--role-danger-btn);
+  color: #fff;
+}
+
+/* ---------- 新增 / 编辑弹窗 ---------- */
+.modal :global(.ant-modal-content),
+.confirm :global(.ant-modal-content) {
+  padding: 0;
+  border-radius: 4px;
+  box-shadow: var(--role-modal-shadow);
+  overflow: hidden;
+}
+
+.modal :global(.ant-modal-header) {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 56px 0 24px;
+  margin: 0;
+}
+
+.modal :global(.ant-modal-title),
+.confirm :global(.ant-modal-confirm-title) {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.modal :global(.ant-modal-close),
+.confirm :global(.ant-modal-close) {
+  top: 13px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  color: var(--role-modal-close);
+}
+
+.modal :global(.ant-modal-body) {
+  max-height: calc(100vh - 48px - 120px);
+  overflow: auto;
+  padding: 2px 24px 20px;
+}
+
+.modal :global(.ant-modal-footer),
+.confirm :global(.ant-modal-confirm-btns) {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 24px 18px;
+  margin: 0;
+}
+
+.modal :global(.ant-modal-footer .ant-btn + .ant-btn),
+.confirm :global(.ant-modal-confirm-btns .ant-btn + .ant-btn) {
+  margin-inline-start: 0;
+}
+
+.formBlock {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: var(--role-form-block-bg);
+}
+
+.formBlock:last-child {
+  margin-bottom: 0;
+}
+
+.formRow {
+  margin-bottom: 17px;
+}
+
+.formRow:last-child {
+  margin-bottom: 0;
+}
+
+.formLabel {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--role-form-label);
+}
+
+.required::before {
+  content: '*';
+  margin-right: 4px;
+  color: var(--color-danger);
+}
+
+.field:global(.ant-input),
+.textarea:global(.ant-input) {
+  border-color: var(--role-field-border);
+  border-radius: 4px;
+}
+
+.field:global(.ant-input) {
+  height: 36px;
+  padding: 0 12px;
+}
+
+.textarea:global(.ant-input) {
+  height: 105px;
+  padding: 9px 12px;
+  resize: vertical;
+}
+
+.field:global(.ant-input):focus,
+.textarea:global(.ant-input):focus {
+  border-color: var(--color-primary);
+  box-shadow: var(--role-field-focus-ring);
+}
+
+.help {
+  margin-top: 5px;
+  color: var(--role-help);
+  font-size: 12px;
+}
+
+.error {
+  min-height: 17px;
+  margin-top: 5px;
+  color: var(--color-danger);
+  font-size: 12px;
+}
+
+.scopeOptions:global(.ant-radio-group) {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 原型 .rm-form-row label{display:block} 覆盖了卡片的 flex，单选框单独占一行，标题和说明在下方 */
+.scopeOption:global(.ant-radio-wrapper) {
+  display: block;
+  margin: 0;
+  padding: 13px;
+  border: 1px solid var(--role-table-wrap-border);
+  border-radius: 7px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.scopeOption:global(.ant-radio-wrapper)::after {
+  display: none;
+}
+
+.scopeOption.active:global(.ant-radio-wrapper) {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.scopeOption :global(.ant-radio) {
+  display: block;
+  width: 16px;
+  margin: 3px 0 6px 4px;
+}
+
+.scopeOption :global(.ant-radio) + span {
+  display: block;
+  padding: 0;
+}
+
+.scopeOption strong {
+  display: block;
+  margin-bottom: 4px;
+}
+
+.scopeOption small {
+  color: var(--role-scope-desc);
+  line-height: 1.5;
+}
+
+/* ---------- 确认弹窗（modal.confirm） ---------- */
+.confirm :global(.ant-modal-confirm-body) {
+  display: block;
+}
+
+.confirm :global(.ant-modal-confirm-paragraph) {
+  max-width: 100%;
+  row-gap: 0;
+}
+
+.confirm :global(.ant-modal-confirm-title) {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  padding: 0 56px 0 24px;
+}
+
+.confirm :global(.ant-modal-confirm-body .ant-modal-confirm-content) {
+  margin: 0;
+  padding: 2px 24px 20px;
+  color: var(--role-confirm-text);
+  line-height: 1.75;
+}

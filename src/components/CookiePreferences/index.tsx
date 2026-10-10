@@ -1,12 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { App, Button, Drawer, Switch } from 'antd';
-import {
-  CloseOutlined,
-  LeftOutlined,
-  MinusOutlined,
-  PlusOutlined,
-  RightOutlined,
-} from '@ant-design/icons';
+import { CloseOutlined, LeftOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import logo from '@/assets/icon-mysanyLogo.svg';
 import {
   listCookies,
@@ -17,6 +11,7 @@ import {
   type CookieFlags,
 } from '@/services/common/settings';
 import { COOKIE_CATEGORIES } from './constants';
+import Icon from '@/components/Icon';
 import styles from './index.module.css';
 
 interface Props {
@@ -155,7 +150,7 @@ export default function CookiePreferences({ open, onClose }: Props) {
                       <div className={styles.more}>
                         <span onClick={() => openList(c.key)}>
                           Cookie 详细信息
-                          <RightOutlined />
+                          <Icon name="chevronRight" size={11} strokeWidth={2.4} />
                         </span>
                       </div>
                     </div>

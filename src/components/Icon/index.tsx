@@ -173,6 +173,53 @@ const PATHS = {
       <path d="M3 9h18M9 21V9" />
     </>
   ),
+  /** 细右箭头（「查看全部 ›」「查看 ›」等链接，原型 2.4 描边） */
+  chevronRight: <path d="m9 6 6 6-6 6" />,
+  /* 以下取自原型 wb.js 的 SI（设置弹窗）、工作台.html、policy-update.js */
+  shield: (
+    <>
+      <path d="M12 3l7 3v6c0 4.2-2.9 7.8-7 9-4.1-1.2-7-4.8-7-9V6z" />
+      <path d="m9 12 2 2 4-4" />
+    </>
+  ),
+  doc: (
+    <>
+      <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z" />
+      <path d="M14 3v5h5M9 13h6M9 17h4" />
+    </>
+  ),
+  cookie: (
+    <>
+      <path d="M12 3a9 9 0 1 0 9 9 4 4 0 0 1-4.6-4.4A4 4 0 0 1 12 3z" />
+      <circle cx="9.5" cy="11" r="1" fill="currentColor" stroke="none" />
+      <circle cx="14" cy="14.5" r="1" fill="currentColor" stroke="none" />
+      <circle cx="9" cy="15.5" r="1" fill="currentColor" stroke="none" />
+    </>
+  ),
+  ads: (
+    <>
+      <path d="M3 11v2a1 1 0 0 0 1 1h3l5 4V6L7 10H4a1 1 0 0 0-1 1z" />
+      <path d="M16.5 9.5a4 4 0 0 1 0 5M19 7a7.5 7.5 0 0 1 0 10" />
+    </>
+  ),
+  logout: (
+    <>
+      <path d="M14 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4" />
+      <path d="M9 8l-4 4 4 4M5 12h11" />
+    </>
+  ),
+  search: (
+    <>
+      <circle cx="11" cy="11" r="7" />
+      <path d="m20 20-3.5-3.5" />
+    </>
+  ),
+  gear: (
+    <>
+      <circle cx="12" cy="12" r="3" />
+      <path d="M19.1 14.9a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-1.8-.3 1.6 1.6 0 0 0-1 1.5v.2a2 2 0 1 1-4 0v-.1a1.6 1.6 0 0 0-1-1.5 1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0 .3-1.8 1.6 1.6 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.6 1.6 0 0 0 1.5-1 1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H9a1.6 1.6 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V9a1.6 1.6 0 0 0 1.5 1h.2a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z" />
+    </>
+  ),
 } satisfies Record<string, ReactNode>;
 
 export type IconName = keyof typeof PATHS;

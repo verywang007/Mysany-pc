@@ -1,0 +1,300 @@
+/* 尺寸与色值取自原型 policy-update.css，专用色见 theme 的 pageColors.policy */
+.root :global(.ant-modal-mask) {
+  background: var(--policy-mask);
+}
+
+.modal :global(.ant-modal-content) {
+  padding: 0;
+  max-width: 92vw;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--policy-shadow);
+}
+
+.dialog {
+  max-height: 86vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.head {
+  flex: 0 0 auto;
+  padding: 24px 32px 18px;
+  text-align: center;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.head h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.sub {
+  margin-top: 7px;
+  font-size: 12px;
+  color: var(--color-text-3);
+}
+
+.body {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  padding: 22px 32px 6px;
+  font-size: 14px;
+  line-height: 2;
+  color: var(--color-text-2);
+}
+
+.body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.body::-webkit-scrollbar-thumb {
+  background: var(--shell-scrollbar);
+  border-radius: 3px;
+}
+
+.body p {
+  margin: 0 0 14px;
+}
+
+.body ol {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.body li {
+  margin-bottom: 6px;
+}
+
+.link {
+  color: var(--color-blue);
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+/* 正文底部渐隐，提示还可以继续往下读 */
+.fade {
+  position: relative;
+  height: 0;
+  flex: 0 0 auto;
+}
+
+.fade::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 30px;
+  background: linear-gradient(to bottom, transparent, #fff);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.hasMore .fade::before {
+  opacity: 1;
+}
+
+/* 两行独立勾选：18px 圆形勾选框 */
+.agree {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 32px 0;
+}
+
+.row:global(.ant-checkbox-wrapper) {
+  align-items: center;
+  height: 24px;
+  font-size: 14px;
+  line-height: 24px;
+  color: var(--color-text-3);
+  user-select: none;
+}
+
+.row :global(.ant-checkbox-inner) {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--policy-checkbox-border);
+  border-radius: 50%;
+}
+
+.row :global(.ant-checkbox-checked .ant-checkbox-inner) {
+  border-color: var(--color-primary);
+}
+
+.row :global(.ant-checkbox-input:focus-visible + .ant-checkbox-inner) {
+  box-shadow: var(--policy-focus-ring);
+}
+
+.row :global(.ant-checkbox + span) {
+  padding-inline-start: 10px;
+}
+
+.u {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.u:hover {
+  color: var(--color-primary);
+}
+
+/* 未勾选就点「同意」时的抖动提醒 */
+.shake {
+  animation: shake 0.42s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  80% {
+    transform: translateX(4px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-6px);
+  }
+  40%,
+  60% {
+    transform: translateX(6px);
+  }
+}
+
+/* 按钮 */
+.foot {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 14px;
+  padding: 20px 32px 24px;
+}
+
+.btn {
+  flex: 1 1 0;
+  height: 42px;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--policy-btn-border);
+  background: #fff;
+  color: var(--policy-btn-border);
+  transition: all 0.18s;
+}
+
+.btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btnPrimary {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+  box-shadow: var(--policy-btn-primary-shadow);
+}
+
+.btnPrimary:hover {
+  background: var(--policy-btn-primary-hover);
+  border-color: var(--policy-btn-primary-hover);
+  color: #fff;
+}
+
+.btnPrimary.isDisabled,
+.btnPrimary.isDisabled:hover {
+  background: var(--policy-btn-disabled-bg);
+  border-color: transparent;
+  color: #fff;
+  box-shadow: none;
+}
+
+/* 拒绝二次确认（400px） */
+.confirm :global(.ant-modal-content) {
+  padding: 22px 24px;
+}
+
+.confirm :global(.ant-modal-header) {
+  margin-bottom: 8px;
+}
+
+.confirm :global(.ant-modal-body) {
+  font-size: 13px;
+  color: var(--color-text-3);
+}
+
+.confirm :global(.ant-modal-footer) {
+  margin-top: 18px;
+}
+
+.confirm :global(.ant-modal-footer .ant-btn) {
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 4px;
+}
+
+/* 拒绝后的退出态：白色全屏 */
+.exit {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.exitIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-bg-card);
+  color: var(--color-text-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exit h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.exit p {
+  margin: 0;
+  max-width: 460px;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--color-text-3);
+}
+
+.exitRow {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+
+.exitRow .btn {
+  width: 160px;
+  flex: 0 0 auto;
+}

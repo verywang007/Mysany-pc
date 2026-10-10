@@ -1,0 +1,316 @@
+/* 尺寸取自原型 app.css L316-403 */
+.page {
+  display: flex;
+  min-height: calc(100vh - var(--header-h));
+}
+
+.nav {
+  width: 240px;
+  flex: 0 0 auto;
+  background: var(--color-bg-soft);
+  padding: 16px 16px 24px;
+}
+
+.navItem {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 14px;
+  color: var(--color-text-2);
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.navItem:hover {
+  color: var(--color-text);
+}
+
+.navItem.on {
+  background: #fff;
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+.body {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 24px 32px 40px;
+}
+
+.h {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 14px;
+}
+
+/* 个人信息 */
+.infoCard {
+  background: var(--color-bg-card);
+  border-radius: 8px;
+  padding: 22px 26px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px 30px;
+  margin-bottom: 26px;
+}
+
+@media (max-width: 1100px) {
+  .infoCard {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.label {
+  font-size: 13px;
+  color: var(--color-text-3);
+  margin-bottom: 9px;
+}
+
+.value {
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.lnk {
+  color: var(--color-blue);
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.lnk:hover {
+  text-decoration: underline;
+}
+
+.edit {
+  cursor: pointer;
+  color: var(--color-blue);
+  display: inline-flex;
+  font-size: 13px;
+}
+
+/* 租户信息 */
+.tenantWrap {
+  background: var(--color-bg-card);
+  border-radius: 8px;
+  padding: 20px 24px;
+}
+
+.tenantLabel {
+  font-size: 13px;
+  color: var(--color-text-3);
+  margin-bottom: 12px;
+}
+
+.tenantListLabel {
+  margin-top: 22px;
+}
+
+.tenant {
+  background: #fff;
+  border-radius: 8px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 540px;
+}
+
+.tenantIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex: 0 0 auto;
+  background: var(--profile-tenant-icon-bg);
+  color: var(--profile-tenant-icon);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tenantName {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.tenantType {
+  font-size: 12px;
+  color: var(--color-text-3);
+  margin-top: 3px;
+}
+
+.pill {
+  margin-left: auto;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  border-radius: 12px;
+  padding: 2px 13px;
+  font-size: 12px;
+}
+
+/* 单输入框弹窗 */
+.prompt :global(.ant-modal-content) {
+  padding: 22px 24px;
+}
+
+.prompt :global(.ant-modal-header) {
+  margin-bottom: 8px;
+}
+
+.prompt :global(.ant-modal-footer) {
+  margin-top: 18px;
+}
+
+.promptDesc {
+  margin: 0 0 16px;
+  font-size: 13px;
+  color: var(--color-text-3);
+}
+
+/* 修改密码 */
+.pwHead {
+  max-width: 420px;
+  margin: 0 auto 16px;
+}
+
+.pwHead .h {
+  margin-bottom: 6px;
+}
+
+.pwHead p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-3);
+}
+
+.pw {
+  max-width: 420px;
+  margin: 0 auto;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.fld {
+  margin-bottom: 18px;
+}
+
+.fld > label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 9px;
+}
+
+.req {
+  color: var(--color-primary);
+  margin-right: 3px;
+}
+
+.rads {
+  display: flex;
+  gap: 12px;
+}
+
+.rad {
+  flex: 1 1 0;
+  height: 34px;
+  border: 1px solid var(--color-line-2);
+  border-radius: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--color-text-2);
+  cursor: pointer;
+  transition: all 0.18s;
+}
+
+.rad:hover,
+.rad.on {
+  color: var(--color-primary);
+}
+
+.rad.on {
+  border-color: var(--color-primary);
+}
+
+.ipt:global(.ant-input),
+.ipt:global(.ant-input-affix-wrapper) {
+  height: 34px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.err {
+  color: var(--color-danger);
+  font-size: 12px;
+  margin-top: 6px;
+  min-height: 16px;
+}
+
+.pwBtn:global(.ant-btn) {
+  height: 36px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.pwBtn:global(.ant-btn):last-child {
+  margin-bottom: 0;
+}
+
+/* 通知邀请 */
+.ivTabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.ivTab {
+  height: 30px;
+  padding: 0 16px;
+  border: 1px solid var(--color-line-2);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--color-text-2);
+  cursor: pointer;
+}
+
+.ivTab.on {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.ivRule {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--color-blue);
+  cursor: pointer;
+  align-self: center;
+}
+
+.ivRule:hover {
+  text-decoration: underline;
+}
+
+.empty {
+  padding: 90px 0;
+  text-align: center;
+  color: var(--color-text-4);
+  font-size: 13px;
+}
+
+.empty svg {
+  opacity: 0.45;
+  display: block;
+  margin: 0 auto 14px;
+}

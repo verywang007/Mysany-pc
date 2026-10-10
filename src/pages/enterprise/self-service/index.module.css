@@ -1,0 +1,9 @@
+.page {
+  padding: 26px 30px 40px;
+}
+
+.block {
+  height: 360px;
+  border-radius: var(--radius);
+  background: var(--color-primary);
+}

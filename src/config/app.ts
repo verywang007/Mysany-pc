@@ -7,9 +7,9 @@ export const APP_TITLE = 'MySANY';
 
 export const LANGUAGE_OPTIONS = ['简体中文', 'English'];
 
+/** 当前用户 id 与头像；姓名等个人信息见 services/common/account（可在个人中心修改） */
 export const CURRENT_USER = {
   id: 'u0',
-  name: '5656',
   avatar: '🧑',
 };
 

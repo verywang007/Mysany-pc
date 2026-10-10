@@ -16,6 +16,8 @@ export interface MenuNode {
   pro?: boolean;
   path?: string;
   systemPath?: string;
+  /** 隐藏页面在侧栏中高亮的菜单 key（不填则不高亮） */
+  activeKey?: string;
   children?: MenuNode[];
 }
 
@@ -198,6 +200,8 @@ export const HIDDEN_PAGES: MenuNode[] = [
     path: '/lift-planning',
     systemPath: '/standard/liftPlanning/liftPlanning',
   },
+  /** 协议变更演示页（原型 协议变更.html）：工作台 + 更新提示弹窗 */
+  { key: 'policy-update', label: '协议更新提示', path: '/policy-update', activeKey: 'workbench' },
 ];
 
 export interface MenuLeaf extends MenuNode {

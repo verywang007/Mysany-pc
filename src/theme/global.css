@@ -9,6 +9,11 @@ body,
   margin: 0;
 }
 
+/* antd <App> 默认行高 1.5714，原型为 1.5 */
+#root > .ant-app {
+  line-height: 1.5;
+}
+
 body {
   background: #fff;
   color: var(--color-text);

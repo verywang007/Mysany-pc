@@ -18,7 +18,7 @@ export default function BasicLayout() {
   const sider = useSiderState();
   const route = resolveRoute(pathname);
   const { revealLeaf } = sider;
-  const leafKey = route.leaf?.key;
+  const leafKey = route.leaf ? (route.leaf.activeKey ?? route.leaf.key) : undefined;
 
   useEffect(() => {
     document.title = pageTitle(route.title);

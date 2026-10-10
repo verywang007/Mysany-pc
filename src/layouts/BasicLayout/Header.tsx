@@ -4,10 +4,11 @@ import { App, Dropdown, type MenuProps } from 'antd';
 import { BellOutlined, CaretDownFilled, DownOutlined, GlobalOutlined } from '@ant-design/icons';
 import logo from '@/assets/icon-mysanyLogo.svg';
 import { CURRENT_TENANT, CURRENT_USER, LANGUAGE_OPTIONS, TENANT_LIST } from '@/config/app';
-import { findLeafByKey, leafRoute } from '@/config/menu';
 import { LOGIN_PATH } from '@/router/resolve';
+import SettingsModal from '@/components/SettingsModal';
+import { useGoMenu } from '@/router/useGoMenu';
+import { useProfile } from '@/services/common/account';
 import { listMessages, type Message } from '@/services/common/messages';
-import { usePrototypeActions } from '@/utils/feedback';
 import styles from './Header.module.css';
 
 interface Props {
@@ -21,7 +22,9 @@ const DROPDOWN_ALIGN = { offset: [0, -8] as [number, number] };
 export default function Header({ collapsed }: Props) {
   const navigate = useNavigate();
   const { message, modal } = App.useApp();
-  const { notReady } = usePrototypeActions();
+  const go = useGoMenu();
+  const { name } = useProfile();
+  const [settingsOpen, setSettingsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [unreadVisible, setUnreadVisible] = useState(true);
   const [bellOpen, setBellOpen] = useState(false);
@@ -55,11 +58,9 @@ export default function Header({ collapsed }: Props) {
     ],
     onClick: ({ key }) => {
       if (key === 'personal') {
-        const leaf = findLeafByKey('personal');
-        if (leaf) navigate(leafRoute(leaf));
+        go('personal');
       } else if (key === 'settings') {
-        // TODO(第 4 步)：设置弹窗随工作台一起迁移
-        notReady('设置');
+        setSettingsOpen(true);
       } else {
         modal.confirm({
           title: '退出登录',
@@ -152,11 +153,12 @@ export default function Header({ collapsed }: Props) {
         >
           <span className={styles.item}>
             <span className={styles.avatar}>{CURRENT_USER.avatar}</span>
-            <span>{CURRENT_USER.name}</span>
+            <span>{name}</span>
             <DownOutlined className={styles.caret} />
           </span>
         </Dropdown>
       </div>
+      <SettingsModal open={settingsOpen} onClose={() => setSettingsOpen(false)} />
     </header>
   );
 }

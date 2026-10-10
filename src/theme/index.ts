@@ -79,6 +79,39 @@ export const pageColors = {
     btnDisabledBg: 'rgba(198, 0, 11, 0.10)',
     btnDisabledText: 'rgba(198, 0, 11, 0.38)',
   },
+  /** 工作台（取自原型 app.css、wb.js 的 TONE） */
+  workbench: {
+    toneRed: '#c6000b',
+    toneOrange: '#f08200',
+    toneGreen: '#2a9d4e',
+    toneGray: '#b7bdc6',
+    cardHoverBorder: '#f3b9bc',
+    focusRing: '0 0 0 2px rgba(198, 0, 11, .08)',
+    amberBg: '#fdf3e2',
+    amber: '#cf8b1a',
+    slateBg: '#eef0f3',
+    slate: '#5b6472',
+    greenBg: '#e8f6ec',
+    green: '#2a9d4e',
+    blueBg: '#eaf2fe',
+    blue: '#2a78d6',
+  },
+  /** 个人中心（取自原型 app.css） */
+  profile: {
+    tenantIconBg: '#eef3fb',
+    tenantIcon: '#7aa3dd',
+  },
+  /** 协议变更弹窗（取自原型 policy-update.css） */
+  policy: {
+    mask: 'rgba(12, 13, 18, .5)',
+    shadow: '0 12px 48px rgba(18, 20, 28, .28)',
+    checkboxBorder: '#c9c9ce',
+    btnBorder: '#161619',
+    btnPrimaryShadow: '0 6px 16px rgba(198, 0, 11, .22)',
+    btnPrimaryHover: '#ab0009',
+    btnDisabledBg: 'rgba(198, 0, 11, .38)',
+    focusRing: '0 0 0 3px rgba(198, 0, 11, .18)',
+  },
   /** Cookies 偏好中心（取自原型 cookies.css） */
   cookies: {
     switchOff: '#d5d9e0',

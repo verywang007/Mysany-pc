@@ -1,0 +1,99 @@
+/* 表格：取自原型 user-management.css .user-table-wrap / .um-table / .um-select-table / .um-record-table */
+.box {
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--user-table-border);
+  border-radius: 4px;
+}
+
+.table :global(.ant-table) {
+  color: var(--user-cell-text);
+  border-radius: 0;
+}
+
+.table :global(.ant-table-container),
+.table :global(.ant-table-header),
+.table :global(.ant-table-thead > tr > th:first-child),
+.table :global(.ant-table-thead > tr > th:last-child) {
+  border-radius: 0 !important;
+}
+
+.table :global(.ant-table-thead > tr > th),
+.table :global(.ant-table-tbody > tr > td) {
+  height: 48px;
+  padding: 10px 12px;
+  border-right: 1px solid var(--user-cell-line);
+  border-bottom: 1px solid var(--user-cell-line);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  line-height: 1.5;
+}
+
+.table :global(.ant-table-thead > tr > th) {
+  background: var(--user-head-bg);
+  color: var(--user-head-text);
+  font-weight: 600;
+}
+
+/* 表头列分隔竖线（antd 默认的伪元素）去掉，改用单元格右边框 */
+.table :global(.ant-table-thead > tr > th::before) {
+  display: none;
+}
+
+.table :global(.ant-table-tbody > tr > td) {
+  background: #fff;
+}
+
+/* 勾选行不加底色（原型如此），hover 统一为浅灰 */
+.table :global(.ant-table-tbody > tr.ant-table-row-selected > td) {
+  background: #fff !important;
+}
+
+.table :global(.ant-table-tbody > tr.ant-table-row:hover > td) {
+  background: var(--user-row-hover) !important;
+}
+
+/* 末列固定：常驻左侧阴影（原型 box-shadow:-8px 0 12px） */
+.table :global(.ant-table-cell-fix-right-first) {
+  box-shadow: var(--user-fix-shadow);
+}
+
+.table :global(.ant-table-cell-fix-right-first::after),
+.table :global(.ant-table-cell-fix-left-last::after) {
+  display: none;
+}
+
+/* 空状态行：去掉 antd 默认的 hover 底色与内边距 */
+.table :global(.ant-table-placeholder > td) {
+  padding: 0 !important;
+  border-right: 0 !important;
+}
+
+.table :global(.ant-table-placeholder:hover > td) {
+  background: #fff !important;
+}
+
+.empty {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--user-empty);
+}
+
+.table :global(.ant-checkbox-checked .ant-checkbox-inner) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+/* 滚动条：6px，滑块 #bdc1cb */
+.table :global(.ant-table-body)::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.table :global(.ant-table-body)::-webkit-scrollbar-thumb {
+  background: var(--user-scrollbar);
+  border-radius: 4px;
+}

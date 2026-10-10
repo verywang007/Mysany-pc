@@ -1,0 +1,207 @@
+/* 用户管理主区：取自原型 user-management.css .user-container / .user-filter / .user-pagination */
+.page {
+  height: calc(100vh - var(--header-h));
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  overflow: hidden;
+}
+
+/* ---------- 查询区 + 工具栏 ---------- */
+/*
+ * 修正原型缺陷：原型在 1440 宽且侧栏展开时按钮组被挤压，按钮文字折成两行溢出 34px 高度。
+ * 这里按钮不收缩，空间不足时按钮组整体换到下一行并右对齐（与 ≤1200px 的规则一致）。
+ */
+.filter {
+  min-height: 50px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  gap: 8px;
+  padding-bottom: 8px;
+}
+
+.filterLeft,
+.filterActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterActions {
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.query:global(.ant-input) {
+  width: 230px;
+  height: 34px;
+  padding: 0 12px;
+  border-color: var(--user-ctrl-border);
+  color: var(--user-ctrl-text);
+}
+
+.select {
+  width: 170px;
+  height: 34px;
+}
+
+.select :global(.ant-select-selector) {
+  padding: 0 10px !important;
+  border-color: var(--user-ctrl-border) !important;
+  color: var(--user-ctrl-text);
+}
+
+/* 分裂按钮：右侧 ⌄ 宽 38px，左边框半透明白 */
+.split :global(.ant-btn:first-child) {
+  border-radius: 3px 0 0 3px !important;
+}
+
+.split :global(.ant-btn:last-child) {
+  width: 38px;
+  padding: 0 !important;
+  border-left-color: var(--user-split-line) !important;
+  border-radius: 0 3px 3px 0 !important;
+}
+
+.splitArrow {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.actionMenu :global(.ant-dropdown-menu) {
+  width: 145px;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: var(--user-menu-shadow);
+}
+
+.actionMenu :global(.ant-dropdown-menu-item) {
+  height: 34px;
+  padding: 0 13px !important;
+  border-radius: 0 !important;
+  color: var(--user-ctrl-text) !important;
+}
+
+.actionMenu :global(.ant-dropdown-menu-item:hover) {
+  background: var(--color-bg-soft) !important;
+}
+
+/* ---------- 表格 ---------- */
+.tableWrap {
+  flex: 1 1 auto;
+}
+
+.actions {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.actions .deleteLink:global(.ant-btn) {
+  color: var(--user-delete-link);
+}
+
+.actions .deleteLink:global(.ant-btn:hover) {
+  color: var(--color-primary-hover) !important;
+}
+
+/* ---------- 分页 ---------- */
+.pagination {
+  min-height: 55px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--user-ctrl-text);
+}
+
+.pagination :global(.ant-pagination) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--user-ctrl-text);
+}
+
+.pagination :global(.ant-pagination > li) {
+  margin: 0 !important;
+}
+
+.pagination :global(.ant-pagination-total-text) {
+  height: auto;
+  line-height: 1.5;
+}
+
+.pagination :global(.ant-pagination-item),
+.pagination :global(.ant-pagination-prev button),
+.pagination :global(.ant-pagination-next button) {
+  min-width: 30px;
+  height: 30px;
+  padding: 0 8px;
+  border: 1px solid var(--user-page-border);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--user-ctrl-text);
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.pagination :global(.ant-pagination-prev),
+.pagination :global(.ant-pagination-next) {
+  min-width: 30px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.pagination :global(.ant-pagination-item a) {
+  padding: 0;
+  color: inherit !important;
+}
+
+.pagination :global(.ant-pagination-item:hover) {
+  background: #fff !important;
+}
+
+.pagination :global(.ant-pagination-item-active),
+.pagination :global(.ant-pagination-item-active:hover) {
+  border-color: var(--color-primary);
+  background: var(--color-primary) !important;
+  color: #fff;
+}
+
+.pagination :global(.ant-pagination-disabled button),
+.pagination :global(.ant-pagination-item-disabled) {
+  color: var(--user-page-disabled) !important;
+  background: var(--user-row-hover) !important;
+  cursor: not-allowed;
+}
+
+.pagination :global(.ant-pagination-options .ant-select) {
+  height: 30px;
+}
+
+.pagination :global(.ant-pagination-options .ant-select-selector) {
+  padding: 0 8px !important;
+  border-color: var(--user-page-border) !important;
+  border-radius: 4px;
+}
+
+@media (max-width: 1200px) {
+  .filter {
+    flex-wrap: wrap;
+  }
+
+  .filterActions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  .filter {
+    padding-bottom: 0;
+  }
+
+  .tableWrap {
+    margin-top: 8px;
+  }
+}

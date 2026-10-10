@@ -1,0 +1,259 @@
+.sider {
+  position: fixed;
+  top: var(--header-h);
+  bottom: 0;
+  left: 0;
+  width: var(--sider-w);
+  background: #fff;
+  border-right: 1px solid var(--color-line);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.2s;
+  z-index: 90;
+}
+
+.collapsed {
+  width: var(--sider-w-c);
+}
+
+.menu {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 4px;
+}
+
+.menu::-webkit-scrollbar {
+  width: 5px;
+}
+
+.menu::-webkit-scrollbar-thumb {
+  background: #dfe3e8;
+  border-radius: 3px;
+}
+
+/* 一级菜单行 */
+.row {
+  position: relative;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px 0 24px;
+  cursor: pointer;
+  white-space: nowrap;
+  color: var(--color-text);
+  transition:
+    background 0.15s,
+    color 0.15s;
+  user-select: none;
+}
+
+.row:hover {
+  background: var(--color-bg-soft);
+}
+
+.icon {
+  flex: 0 0 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+  color: var(--color-text-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: margin 0.2s;
+}
+
+.label {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.arrow {
+  font-size: 10px;
+  color: var(--color-text-4);
+  transition: transform 0.2s;
+  flex: 0 0 auto;
+}
+
+.open > .row .arrow {
+  transform: rotate(180deg);
+}
+
+.subItem:hover:not(.on) {
+  color: var(--color-text);
+}
+
+/* 选中：浅红底 + 红字 + 左侧红条 */
+.row.on,
+.subItem.on {
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.row.on .icon {
+  color: var(--color-primary);
+}
+
+.row.on::before,
+.subItem.on::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--color-primary);
+}
+
+.hasOn > .row,
+.hasOn > .row .icon {
+  color: var(--color-primary);
+}
+
+/* PRO 角标 */
+.pro {
+  position: absolute;
+  left: 0;
+  top: 8px;
+  background: var(--color-primary);
+  color: #fff;
+  font-size: 9px;
+  /* 原型用 <i> 标签且未重置，显示为斜体 */
+  font-style: italic;
+  line-height: 1;
+  padding: 2px 4px 2px 3px;
+  border-radius: 0 3px 3px 0;
+  letter-spacing: 0.3px;
+}
+
+/* 二级菜单 */
+.sub {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.25s ease;
+  background: var(--color-bg-soft);
+}
+
+.open > .sub {
+  max-height: 420px;
+}
+
+.subItem {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px 0 52px;
+  font-size: 14px;
+  color: var(--color-text-2);
+  cursor: pointer;
+  white-space: nowrap;
+  position: relative;
+}
+
+/* 折叠态 */
+.collapsed .row {
+  padding: 0;
+  justify-content: center;
+}
+
+.collapsed .icon {
+  margin-right: 0;
+}
+
+.collapsed .label,
+.collapsed .arrow,
+.collapsed .pro,
+.collapsed .sub {
+  display: none;
+}
+
+/* 折叠态浮层子菜单 */
+.flyout {
+  position: fixed;
+  left: var(--sider-w-c);
+  min-width: 150px;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-popup);
+  padding: 4px 0;
+  z-index: 150;
+}
+
+.flyTitle {
+  padding: 8px 18px 6px;
+  font-size: 12px;
+  color: var(--color-text-3);
+  border-bottom: 1px solid var(--color-line);
+  margin-bottom: 4px;
+}
+
+.flyItem {
+  padding: 9px 18px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.flyItem:hover {
+  background: var(--color-bg-soft);
+}
+
+.flyItem.on {
+  color: var(--color-primary);
+}
+
+/* 侧栏底部：装饰图形 + 折叠按钮 */
+.footer {
+  flex: 0 0 auto;
+  height: 46px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 18px;
+  border-top: 1px solid var(--color-line);
+}
+
+.deco {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 96px;
+  height: 40px;
+  background: linear-gradient(120deg, #e8f7ee 0%, #f2fbf5 60%, transparent 100%);
+  clip-path: polygon(0 100%, 0 40%, 42% 0, 96% 42%, 58% 100%);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.toggle {
+  cursor: pointer;
+  color: var(--color-text-3);
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
+.toggle:hover {
+  color: var(--color-primary);
+}
+
+.toggle :global(.anticon) {
+  transition: transform 0.2s;
+}
+
+.collapsed .footer {
+  justify-content: center;
+  padding-right: 0;
+}
+
+.collapsed .toggle :global(.anticon) {
+  transform: rotate(180deg);
+}

@@ -1,0 +1,8 @@
+node_modules
+# dist 需要提交：dist/index.html 是可以直接双击打开的成品
+*.local
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.log

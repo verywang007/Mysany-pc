@@ -1,0 +1,25 @@
+.placeholder {
+  padding: 110px 20px;
+  text-align: center;
+}
+
+.placeholder h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.placeholder p {
+  margin: 0;
+  color: var(--color-text-3);
+  font-size: 13px;
+}
+
+.icon {
+  color: var(--color-text-4);
+  opacity: 0.6;
+  margin-bottom: 16px;
+}
+
+.action {
+  margin-top: 20px;
+}

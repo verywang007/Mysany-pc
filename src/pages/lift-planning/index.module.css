@@ -1,0 +1,420 @@
+/* 尺寸取自原型 lift-planning.css，色值见 theme 的 pageColors.lift */
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - var(--header-h));
+  background: #fff;
+}
+
+/* 顶部模块页签 */
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--color-line);
+  background: #fff;
+  /* 修正原型缺陷：原型吸顶不生效（父级 overflow），且 top:0 会落在固定顶栏下面 */
+  position: sticky;
+  top: var(--header-h);
+  z-index: 5;
+  flex: none;
+}
+
+.tab {
+  appearance: none;
+  background: none;
+  border: none;
+  font: inherit;
+  font-size: 13px;
+  color: var(--lift-text);
+  padding: 12px 14px;
+  cursor: pointer;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tab:hover,
+.tab.on {
+  color: var(--color-primary);
+}
+
+.tab.on {
+  font-weight: 600;
+}
+
+.tab.on::after {
+  content: '';
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--color-primary);
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* 左侧 SMART LIFT 栏 */
+.side {
+  width: 220px;
+  flex: none;
+  border-right: 1px solid var(--color-line);
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* 与原型一致：主导航折叠时左栏变为 200px */
+:global([data-collapsed='1']) .side {
+  width: 200px;
+}
+
+.brand {
+  text-align: center;
+}
+
+.brandIcon {
+  width: 88px;
+  height: 88px;
+  margin: 0 auto;
+  border-radius: 18px;
+  background: linear-gradient(160deg, var(--lift-brand-from), var(--lift-brand-to));
+  box-shadow: var(--lift-brand-shadow);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brandSany {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--lift-brand-text);
+}
+
+.brandName {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--lift-muted);
+  letter-spacing: 0.04em;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.navItem {
+  appearance: none;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 13px;
+  color: var(--lift-text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.navItem svg {
+  flex: none;
+}
+
+.navItem:hover {
+  background: var(--color-bg-soft);
+}
+
+.navItem.on,
+.navItem.on:hover {
+  background: var(--lift-selected);
+  color: #fff;
+}
+
+/* 右侧内容 */
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 28px 40px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin: 0 0 24px;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--lift-title);
+}
+
+/* 轮播：3 张同图并排，选中放大 */
+.slides {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.slide {
+  width: 300px;
+  height: 190px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, var(--lift-slide-from) 0%, var(--lift-slide-to) 100%);
+  border: 1px solid var(--color-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.slide svg {
+  width: 78%;
+  height: 78%;
+}
+
+.slide.on {
+  transform: scale(1.03);
+  box-shadow: var(--lift-card-shadow);
+}
+
+.slide:not(.on) {
+  opacity: 0.85;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: var(--lift-dot);
+  cursor: pointer;
+}
+
+.dot.on {
+  background: var(--color-primary);
+}
+
+/* 最近项目 */
+.recentHead {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recentHead h3 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--lift-title);
+}
+
+.views {
+  display: flex;
+  gap: 4px;
+}
+
+.viewBtn {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lift-muted);
+}
+
+.viewBtn:hover {
+  background: var(--color-bg-soft);
+  color: var(--lift-text);
+}
+
+.viewBtn.on,
+.viewBtn.on:hover {
+  background: var(--lift-selected);
+  color: #fff;
+}
+
+.projects {
+  margin-top: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 190px);
+  gap: 20px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project {
+  cursor: pointer;
+}
+
+.thumb {
+  height: 150px;
+  border-radius: 8px;
+  border: 1px solid var(--color-line);
+  background:
+    linear-gradient(var(--lift-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--lift-grid) 1px, transparent 1px), #fff;
+  background-size:
+    18px 18px,
+    18px 18px,
+    auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.project:hover .thumb {
+  box-shadow: var(--lift-thumb-shadow);
+}
+
+.thumb svg {
+  width: 80%;
+  height: 70%;
+}
+
+.list .project {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+}
+
+.list .thumb {
+  width: 96px;
+  height: 60px;
+  flex: none;
+}
+
+.meta {
+  margin-top: 8px;
+}
+
+.list .meta {
+  margin-top: 0;
+}
+
+.name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--lift-title);
+  font-weight: 500;
+}
+
+.name svg {
+  color: var(--lift-folder);
+}
+
+.time {
+  margin-top: 4px;
+  font-size: 12px;
+  color: var(--lift-time);
+}
+
+/* 底部标语：箭头只是文字，不可点击 */
+.footer {
+  margin-top: auto;
+  padding-top: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--lift-footer);
+  font-size: 13px;
+}
+
+.arrow {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.slogan {
+  letter-spacing: 0.3em;
+}
+
+/* 取消按钮：固定右下角 */
+.cancel {
+  position: fixed;
+  right: 28px;
+  bottom: 24px;
+  z-index: 20;
+  appearance: none;
+  border: 1px solid var(--lift-dot);
+  background: #fff;
+  color: var(--lift-text);
+  font: inherit;
+  font-size: 13px;
+  padding: 7px 26px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cancel:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+@media (max-width: 1200px) {
+  .slide {
+    width: 240px;
+    height: 160px;
+  }
+}
+
+@media (max-width: 960px) {
+  .side {
+    display: none;
+  }
+
+  .slides {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .slide {
+    width: 100%;
+    max-width: 420px;
+  }
+}

@@ -116,6 +116,27 @@ export const pageColors: Record<string, Record<string, string>> = {
     btnDisabledBg: 'rgba(198, 0, 11, .38)',
     focusRing: '0 0 0 3px rgba(198, 0, 11, .18)',
   },
+  /** 吊装规划（取自原型 lift-planning.css，原型未用变量，色值全部收敛到这里） */
+  lift: {
+    text: '#333',
+    title: '#1f2329',
+    brandText: '#222',
+    muted: '#8a9099',
+    time: '#9aa0a8',
+    footer: '#b7bdc6',
+    /** SMART LIFT 菜单、视图切换的选中底色（原型如此，与主题红不同） */
+    selected: '#1677ff',
+    brandFrom: '#d3140f',
+    brandTo: '#a30d0a',
+    brandShadow: '0 8px 18px rgba(198, 0, 11, .28)',
+    slideFrom: '#fbfbfc',
+    slideTo: '#f2f4f7',
+    cardShadow: '0 10px 26px rgba(31, 35, 41, .12)',
+    thumbShadow: '0 8px 20px rgba(31, 35, 41, .12)',
+    dot: '#d9dce1',
+    grid: '#f6f7f9',
+    folder: '#f7b500',
+  },
   /** 企业服务四页：各自一个文件（theme/pages），便于分别维护 */
   tenant: tenantColors,
   organization: organizationColors,

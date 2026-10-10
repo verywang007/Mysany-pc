@@ -31,7 +31,11 @@ export default function BasicLayout() {
 
   const { Component } = route;
   return (
-    <div className={sider.collapsed ? `${styles.layout} ${styles.collapsed}` : styles.layout}>
+    // data-collapsed 供页面样式感知侧栏折叠（如吊装规划左栏宽度随之变化）
+    <div
+      className={sider.collapsed ? `${styles.layout} ${styles.collapsed}` : styles.layout}
+      data-collapsed={sider.collapsed ? '1' : '0'}
+    >
       <Header collapsed={sider.collapsed} />
       <SideNav
         activeKey={leafKey}

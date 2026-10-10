@@ -8,6 +8,7 @@ import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
 export const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
   '/workbench': lazy(() => import('@/pages/workbench')),
   '/policy-update': lazy(() => import('@/pages/policy-update')),
+  '/lift-planning': lazy(() => import('@/pages/lift-planning')),
   '/enterprise/profile': lazy(() => import('@/pages/enterprise/profile')),
   '/enterprise/self-service': lazy(() => import('@/pages/enterprise/self-service')),
   '/enterprise/tenant': lazy(() => import('@/pages/enterprise/tenant')),

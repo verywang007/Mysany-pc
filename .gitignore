@@ -6,3 +6,6 @@ node_modules
 !.vscode/extensions.json
 .idea
 *.log
+
+# Claude Code 本地目录（子代理工作树等）
+.claude/

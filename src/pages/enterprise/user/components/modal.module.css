@@ -1,0 +1,311 @@
+/* 弹窗：取自原型 user-management.css「弹窗」「多步、选择表格」「邀请与记录」「导入」「个人设备双栏」 */
+
+/* ---------- 外壳 ---------- */
+.root :global(.ant-modal-mask) {
+  background: var(--user-mask);
+}
+
+.root :global(.ant-modal) {
+  top: 0;
+  max-width: calc(100vw - 48px);
+  padding-bottom: 0;
+}
+
+.root :global(.ant-modal-content) {
+  max-height: calc(100vh - 48px);
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow: hidden;
+  border-radius: 4px;
+  box-shadow: var(--user-modal-shadow);
+}
+
+.root :global(.ant-modal-header) {
+  min-height: 58px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin: 0;
+  padding: 0 60px 0 24px;
+}
+
+.root :global(.ant-modal-title) {
+  color: var(--user-modal-title);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.root :global(.ant-modal-close) {
+  top: 13px;
+  right: 24px;
+  width: 32px;
+  height: 32px;
+}
+
+.root :global(.ant-modal-close:hover) {
+  background: transparent;
+}
+
+.closeX {
+  color: var(--user-modal-close);
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.root :global(.ant-modal-body) {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 2px 24px 20px;
+  color: var(--user-field-text);
+}
+
+.root :global(.ant-modal-footer) {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+}
+
+.foot {
+  min-height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 24px 18px;
+}
+
+.foot :global(.ant-btn) {
+  min-width: 72px;
+  margin: 0 !important;
+}
+
+/* 危险按钮 .um-btn.danger */
+.root .danger:global(.ant-btn),
+.root .danger:global(.ant-btn:hover) {
+  border-color: var(--user-danger) !important;
+  background: var(--user-danger) !important;
+  color: #fff !important;
+}
+
+/* ---------- 表单 ---------- */
+.block {
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background: var(--user-block-bg);
+}
+
+.row {
+  margin-bottom: 16px;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--user-label);
+  font-size: 14px;
+}
+
+.required::before {
+  content: '*';
+  margin-right: 4px;
+  color: var(--color-danger);
+}
+
+.root .row :global(.ant-input),
+.root .row :global(.ant-select-selector) {
+  border-color: var(--user-field-border);
+  color: var(--user-field-text);
+}
+
+.root .row :global(.ant-input:not(textarea)) {
+  height: 36px;
+}
+
+.root .row :global(.ant-select-single) {
+  height: 36px;
+}
+
+.root .row :global(.ant-select-multiple .ant-select-selector) {
+  min-height: 36px;
+}
+
+.root .row :global(.ant-select) {
+  width: 100%;
+}
+
+.error {
+  min-height: 17px;
+  margin-top: 5px;
+  color: var(--color-danger);
+  font-size: 12px;
+  line-height: 17px;
+}
+
+.help {
+  display: block;
+  margin-top: 5px;
+  color: var(--user-help);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+/* 区号 42% + 手机号 58%，拼接无缝 */
+.phone {
+  display: grid !important;
+  grid-template-columns: 42% 58%;
+  width: 100%;
+}
+
+.check {
+  align-items: flex-start;
+}
+
+.check :global(.ant-checkbox) {
+  align-self: flex-start;
+  margin-top: 2px;
+}
+
+.check strong {
+  display: block;
+  color: var(--user-ctrl-text);
+  font-size: 14px;
+}
+
+.infoTip {
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: var(--user-tip);
+  background: var(--user-tip-bg);
+  font-size: 13px;
+}
+
+.deleteWarning {
+  color: var(--user-warn-text);
+  line-height: 1.7;
+}
+
+.deleteWarning strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--user-field-text);
+  font-size: 15px;
+}
+
+.deleteWarning p {
+  margin: 14px 0 0;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: var(--user-warn);
+  background: var(--user-warn-bg);
+}
+
+.link:global(.ant-btn) {
+  padding: 0 5px;
+}
+
+/* ---------- 邀请 ---------- */
+.segment {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.segment :global(.ant-radio-button-wrapper) {
+  height: 32px;
+  padding: 0 18px;
+  border-color: var(--user-ctrl-border);
+  color: var(--user-ctrl-text);
+  line-height: 30px;
+}
+
+.segment :global(.ant-radio-button-wrapper:hover) {
+  color: var(--user-ctrl-text);
+}
+
+.segment :global(.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled)),
+.segment :global(.ant-radio-button-wrapper-checked:not(.ant-radio-button-wrapper-disabled):hover) {
+  z-index: 1;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.segment :global(.ant-radio-button-wrapper-checked::before) {
+  background: var(--color-primary) !important;
+}
+
+.searchRow {
+  display: flex;
+  gap: 8px;
+}
+
+.searchRow :global(.ant-input),
+.searchRow :global(.ant-select) {
+  height: 36px;
+}
+
+.searchRow :global(.ant-input) {
+  flex: 1;
+  border-color: var(--user-field-border);
+}
+
+.searchRow :global(.ant-select-selector) {
+  border-color: var(--user-field-border) !important;
+}
+
+.searchRow :global(.ant-btn) {
+  height: 36px !important;
+}
+
+.searchPrefix {
+  width: 160px;
+  flex: 0 0 auto;
+}
+
+.userCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  background: var(--color-bg-card);
+}
+
+.userCard strong {
+  display: block;
+}
+
+.userCard small {
+  color: var(--user-help);
+  font-size: 12px;
+}
+
+.userCard .link {
+  margin-left: auto;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--user-avatar);
+  font-weight: 600;
+}
+
+.root .remark:global(.ant-input) {
+  height: 90px;
+  padding: 9px 12px;
+  resize: vertical;
+}

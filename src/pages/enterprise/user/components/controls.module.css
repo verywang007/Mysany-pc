@@ -1,0 +1,87 @@
+/*
+ * 本页 antd 按钮 / 输入控件的统一覆盖（页面与弹窗共用），取自原型 user-management.css .um-btn / .um-filter-input / .um-field。
+ */
+.controls :global(.ant-btn:not(.ant-btn-link)) {
+  height: 34px;
+  padding: 0 17px;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.controls :global(.ant-btn-default:not(:disabled)) {
+  border-color: var(--user-ctrl-border);
+  color: var(--user-ctrl-text);
+  background: #fff;
+}
+
+.controls :global(.ant-btn-default:not(:disabled):hover) {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: #fff;
+}
+
+.controls :global(.ant-btn-primary:not(:disabled):not(.ant-btn-dangerous)) {
+  border-color: var(--color-primary);
+  background: var(--color-primary);
+  color: #fff;
+}
+
+.controls :global(.ant-btn-primary:not(:disabled):not(.ant-btn-dangerous):hover) {
+  border-color: var(--color-primary-hover);
+  background: var(--color-primary-hover);
+  color: #fff;
+}
+
+/* 禁用态统一为浅粉底白字（默认按钮禁用也是这个样式） */
+.controls :global(.ant-btn:not(.ant-btn-link):disabled) {
+  border-color: var(--user-disabled-border);
+  background: var(--user-disabled-bg);
+  color: #fff;
+  cursor: not-allowed;
+}
+
+/* 文字链接 .um-link：蓝色，hover 主题红 */
+.controls :global(.ant-btn-link) {
+  height: auto;
+  padding: 0 5px;
+  border: 0;
+  color: var(--user-link);
+  box-shadow: none;
+}
+
+.controls :global(.ant-btn-link:hover) {
+  color: var(--color-primary) !important;
+  background: transparent !important;
+}
+
+/* 占位文字：原型为浏览器默认占位色 */
+.controls :global(.ant-input::placeholder),
+.controls :global(.ant-select-selection-placeholder) {
+  color: var(--user-placeholder);
+}
+
+/* 输入框、下拉：聚焦主题红边框 + 浅红光晕 */
+.controls :global(.ant-input),
+.controls :global(.ant-input-affix-wrapper),
+.controls :global(.ant-select-selector) {
+  border-radius: 4px;
+  box-shadow: none;
+}
+
+.controls :global(.ant-input:focus),
+.controls :global(.ant-input-focused),
+.controls :global(.ant-input-affix-wrapper-focused),
+.controls :global(.ant-select-focused:not(.ant-select-status-error) .ant-select-selector) {
+  border-color: var(--color-primary) !important;
+  box-shadow: var(--user-focus-ring) !important;
+}
+
+.controls :global(.ant-input-status-error),
+.controls :global(.ant-select-status-error .ant-select-selector) {
+  border-color: var(--color-danger) !important;
+}
+
+.controls :global(.ant-checkbox-checked .ant-checkbox-inner) {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}

@@ -1,0 +1,205 @@
+/* 弹窗内的选择表筛选、步骤条、导入上传框、个人设备穿梭框：取自原型 user-management.css */
+
+/* ---------- 记录、选择表 ---------- */
+.miniFilter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.filterSelect {
+  width: 160px;
+  height: 36px;
+}
+
+.miniInput:global(.ant-input) {
+  width: 180px;
+  height: 36px;
+  border-color: var(--user-field-border);
+}
+
+.steps {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--user-step-idle-text);
+}
+
+.step i {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--user-step-idle);
+  font-style: normal;
+}
+
+.stepOn {
+  color: var(--user-ctrl-text);
+  font-weight: 600;
+}
+
+.stepOn i {
+  background: var(--color-primary);
+}
+
+.stepLine {
+  width: 90px;
+  height: 1px;
+  background: var(--user-page-border);
+}
+
+.subTitle {
+  margin: 21px 0;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.count {
+  margin-right: auto;
+  color: var(--user-warn-text);
+}
+
+/* ---------- 导入 ---------- */
+.importTools {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.upload:global(.ant-upload-wrapper .ant-upload-drag) {
+  border: 1px dashed var(--user-upload-border);
+  border-radius: 6px;
+  background: var(--user-upload-bg);
+  color: var(--user-upload-text);
+}
+
+.upload:global(.ant-upload-wrapper .ant-upload-drag:not(.ant-upload-disabled):hover),
+.upload:global(.ant-upload-wrapper .ant-upload-drag.ant-upload-drag-hover) {
+  border-color: var(--color-primary);
+}
+
+.upload:global(.ant-upload-wrapper .ant-upload-drag .ant-upload-btn) {
+  padding: 34px 20px;
+}
+
+.uploadIcon {
+  width: 42px;
+  height: 42px;
+  color: var(--user-upload-icon);
+}
+
+.upload p {
+  margin: 10px 0 5px;
+  color: var(--user-ctrl-text);
+}
+
+.upload small {
+  display: block;
+  margin-bottom: 14px;
+  color: var(--user-upload-small);
+  font-size: 12px;
+}
+
+.summary {
+  margin: 12px 0;
+  padding: 10px 12px;
+  border-radius: 4px;
+  color: var(--user-summary);
+  background: var(--user-summary-bg);
+}
+
+/* ---------- 个人设备穿梭框 ---------- */
+.personalSearch:global(.ant-input) {
+  height: 36px;
+  margin-bottom: 12px;
+  border-color: var(--user-field-border);
+}
+
+.transfer:global(.ant-transfer) {
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  gap: 10px;
+  height: 380px;
+}
+
+.transfer :global(.ant-transfer-list) {
+  width: auto;
+  height: 380px;
+  min-width: 0;
+  border-color: var(--user-table-border);
+  border-radius: 4px;
+}
+
+.transfer :global(.ant-transfer-list-header) {
+  height: auto;
+  padding: 12px;
+  border-bottom-color: var(--user-pane-line);
+  border-radius: 0;
+}
+
+.transfer :global(.ant-transfer-list-header-selected) {
+  color: var(--user-field-text);
+  font-weight: 700;
+}
+
+.transfer :global(.ant-transfer-list-header-dropdown) {
+  display: none;
+}
+
+.transfer :global(.ant-transfer-list-content-item) {
+  gap: 8px;
+  min-height: 0;
+  margin: 0;
+  padding: 9px 11px;
+  border-bottom: 1px solid var(--color-line);
+  border-radius: 0;
+  line-height: 1.5;
+}
+
+.transfer :global(.ant-transfer-list-content-item:hover),
+.transfer :global(.ant-transfer-list-content-item-checked) {
+  background: #fff !important;
+}
+
+.transfer :global(.ant-transfer-list-body-not-found) {
+  margin: 0;
+  padding: 40px;
+  color: var(--user-empty);
+  text-align: center;
+}
+
+.transfer :global(.ant-transfer-operation) {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+}
+
+.transfer :global(.ant-transfer-operation .ant-btn) {
+  width: 56px;
+  margin: 0;
+  padding: 0;
+}
+
+/* 箭头按钮只显示原型的 › ‹ 文字 */
+.transfer :global(.ant-transfer-operation .ant-btn .anticon) {
+  display: none;
+}
+
+.transfer :global(.ant-transfer-operation .ant-btn > span:not(.anticon)) {
+  margin: 0;
+}

@@ -1,0 +1,49 @@
+/* 标签：取自原型 user-management.css .um-tag / .um-status */
+.tags {
+  display: flex;
+  gap: 5px;
+  overflow: hidden;
+}
+
+.tag,
+.status {
+  margin: 0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.tag {
+  flex: 0 0 auto;
+  max-width: 165px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.org {
+  color: var(--user-org-tag);
+  background: var(--user-org-tag-bg);
+}
+
+.role {
+  color: var(--user-role-tag);
+  background: var(--user-role-tag-bg);
+}
+
+.pending {
+  color: var(--user-pending);
+  background: var(--user-pending-bg);
+}
+
+.accepted {
+  color: var(--user-accepted);
+  background: var(--user-accepted-bg);
+}
+
+.rejected,
+.cancelled {
+  color: var(--user-rejected);
+  background: var(--user-rejected-bg);
+}

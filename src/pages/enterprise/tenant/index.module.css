@@ -1,0 +1,217 @@
+/* 尺寸取自原型 tenant-management.css */
+.page {
+  padding: 0 16px 30px;
+}
+
+/* 顶部页签 */
+.tabs {
+  height: 68px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 36px;
+}
+
+.tab {
+  position: relative;
+  height: 46px;
+  padding: 0 2px;
+  border: 0;
+  background: transparent;
+  color: var(--tenant-tab);
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: transparent;
+}
+
+.tabActive {
+  color: var(--tenant-tab-active);
+  font-weight: 600;
+}
+
+.tabActive::after {
+  background: var(--tenant-tab-active);
+}
+
+.content {
+  min-height: calc(100vh - var(--header-h) - 68px - 30px);
+}
+
+/* 租户基础信息 */
+.sectionHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 14px 0 18px;
+}
+
+.sectionHead h1 {
+  margin: 0;
+  color: var(--tenant-title);
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.editContact {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 1px 6px;
+  border: 0;
+  background: transparent;
+  color: var(--tenant-title);
+  cursor: pointer;
+}
+
+.editContact:hover {
+  color: var(--color-primary);
+}
+
+.editContact :global(.anticon) {
+  font-size: 16px;
+}
+
+.infoCard {
+  padding: 20px 22px;
+  border-radius: 12px;
+  background: var(--tenant-card-bg);
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 15px 36px;
+}
+
+.infoItem {
+  min-width: 0;
+}
+
+.infoLabel {
+  margin-bottom: 8px;
+  color: var(--tenant-label);
+  font-size: 13px;
+}
+
+.infoValue {
+  overflow-wrap: anywhere;
+  color: var(--tenant-value);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ownerBlock {
+  grid-column: 1 / -1;
+  padding-top: 15px;
+  border-top: 1px solid var(--tenant-owner-line);
+}
+
+.ownerHead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.ownerHead .infoLabel {
+  margin-bottom: 0;
+}
+
+.ownerInline {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--tenant-value);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ownerName {
+  font-weight: 500;
+}
+
+.ownerDivider {
+  width: 1px;
+  height: 14px;
+  flex: 0 0 1px;
+  background: var(--tenant-owner-divider);
+}
+
+.link {
+  padding: 0 5px;
+  border: 0;
+  color: var(--tenant-link);
+  background: transparent;
+  cursor: pointer;
+}
+
+.link:hover {
+  color: var(--color-primary);
+}
+
+.countGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 18px;
+}
+
+.countCard {
+  min-height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-radius: 12px;
+  color: var(--tenant-muted);
+  background: linear-gradient(283deg, var(--tenant-count-from) 1%, var(--tenant-count-to) 100%);
+}
+
+.countLabel {
+  font-size: 15px;
+}
+
+.countValue {
+  margin-top: 9px;
+  color: var(--tenant-title-strong);
+  font-size: 30px;
+  line-height: 30px;
+  font-weight: 650;
+}
+
+.countIcon {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.countIcon svg {
+  width: 64px;
+  height: 64px;
+  filter: drop-shadow(0 8px 7px var(--tenant-count-icon-shadow));
+}
+
+/* 客户信息网格（验证卡、详情卡） */
+.customerGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px 16px;
+}
+
+@media (max-width: 1150px) {
+  .infoGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -182,26 +182,33 @@ export const MENU: MenuNode[] = [
       { key: 'truck-driving', label: '驾驶行为' },
     ],
   },
-  {
-    key: 'lift-plan',
-    label: '吊装规划',
-    icon: 'lift',
-    path: '/lift-planning',
-    systemPath: '/standard/liftPlanning/liftPlanning',
-  },
 ];
 
 /** 未实现页面的路由前缀，后接菜单 key */
 export const BUILDING_PREFIX = '/building/';
+
+/**
+ * 不在侧栏显示、但有独立页面的入口（从其他页面跳转进入）。
+ * 吊装规划：按 2026-10-10 确认，从一级菜单移除，改由工作台「快速链接」进入。
+ */
+export const HIDDEN_PAGES: MenuNode[] = [
+  {
+    key: 'lift-plan',
+    label: '吊装规划',
+    path: '/lift-planning',
+    systemPath: '/standard/liftPlanning/liftPlanning',
+  },
+];
 
 export interface MenuLeaf extends MenuNode {
   /** 所属一级菜单 key（自身就是一级时为 undefined） */
   parentKey?: string;
 }
 
-const LEAVES: MenuLeaf[] = MENU.flatMap((m) =>
-  m.children ? m.children.map((c) => ({ ...c, parentKey: m.key })) : [m],
-);
+const LEAVES: MenuLeaf[] = [
+  ...MENU.flatMap((m) => (m.children ? m.children.map((c) => ({ ...c, parentKey: m.key })) : [m])),
+  ...HIDDEN_PAGES,
+];
 
 /** 叶子菜单对应的路由：已实现的用 path，未实现的进入建设中页 */
 export function leafRoute(leaf: MenuNode): string {

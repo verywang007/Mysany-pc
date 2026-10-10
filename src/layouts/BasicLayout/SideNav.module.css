@@ -28,7 +28,7 @@
 }
 
 .menu::-webkit-scrollbar-thumb {
-  background: #dfe3e8;
+  background: var(--shell-scrollbar);
   border-radius: 3px;
 }
 
@@ -224,7 +224,12 @@
   bottom: 0;
   width: 96px;
   height: 40px;
-  background: linear-gradient(120deg, #e8f7ee 0%, #f2fbf5 60%, transparent 100%);
+  background: linear-gradient(
+    120deg,
+    var(--shell-deco-from) 0%,
+    var(--shell-deco-to) 60%,
+    transparent 100%
+  );
   clip-path: polygon(0 100%, 0 40%, 42% 0, 96% 42%, 58% 100%);
   opacity: 0.9;
   pointer-events: none;

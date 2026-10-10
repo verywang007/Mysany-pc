@@ -91,7 +91,7 @@
   height: 24px;
   border-radius: 50%;
   flex: 0 0 auto;
-  background: linear-gradient(135deg, #ffd9b8, #ffb37a);
+  background: linear-gradient(135deg, var(--shell-avatar-from), var(--shell-avatar-to));
   display: flex;
   align-items: center;
   justify-content: center;

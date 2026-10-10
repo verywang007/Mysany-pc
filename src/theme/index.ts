@@ -45,25 +45,61 @@ export const shadows = {
   popup: '0 6px 16px rgba(0, 0, 0, .12)',
 };
 
-/** 注入到 :root 的 CSS 变量，CSS Modules 里用 var(--color-primary) 等引用 */
+/**
+ * 页面专用色：只在某个页面出现、不适合放进全局语义色的取样值。
+ * 按页面分组，CSS 里以 var(--<页面>-<名称>) 引用，例如 var(--login-ink)。
+ */
+export const pageColors = {
+  /** 主布局（取自原型 app.css）：侧栏底部装饰、头像底色 */
+  shell: {
+    decoFrom: '#e8f7ee',
+    decoTo: '#f2fbf5',
+    avatarFrom: '#ffd9b8',
+    avatarTo: '#ffb37a',
+    scrollbar: '#dfe3e8',
+  },
+  /** 登录页（取自原型 styles.css） */
+  login: {
+    ink: '#050c32',
+    lang: '#50546f',
+    muted: '#5b6979',
+    placeholder: '#9aa0ab',
+    tab: '#5f6775',
+    tabActive: '#111827',
+    input: '#181c26',
+    inputBg: '#f2f4f7',
+    checkboxBorder: '#505570',
+    eye: '#b6bac2',
+    divider: '#d9dde3',
+    tipBg: '#f3f5f8',
+    menuActiveBg: '#fff3f3',
+    menuHoverBg: '#f5f5f5',
+    cardBg: '#fefefe',
+    primaryHover: '#a80009',
+    btnDisabledBg: 'rgba(198, 0, 11, 0.10)',
+    btnDisabledText: 'rgba(198, 0, 11, 0.38)',
+  },
+  /** Cookies 偏好中心（取自原型 cookies.css） */
+  cookies: {
+    switchOff: '#d5d9e0',
+    hostIcon: '#d4901f',
+    btnPrimaryHover: '#ab0009',
+  },
+};
+
+const kebab = (s: string) => s.replace(/[A-Z0-9]+/g, (m) => `-${m.toLowerCase()}`);
+
+/**
+ * 注入到 :root 的 CSS 变量（main.tsx 启动时写入），CSS Modules 里用 var(--color-primary) 等引用。
+ * 由上面的 colors / pageColors / layout / shadows 自动生成，新增颜色只改上面的对象。
+ */
 export const cssVars: Record<string, string> = {
-  '--color-primary': colors.primary,
-  '--color-primary-hover': colors.primaryHover,
-  '--color-primary-bg': colors.primaryBg,
-  '--color-primary-bg-2': colors.primaryBg2,
-  '--color-text': colors.text,
-  '--color-text-2': colors.text2,
-  '--color-text-3': colors.text3,
-  '--color-text-4': colors.text4,
-  '--color-line': colors.line,
-  '--color-line-2': colors.line2,
-  '--color-bg-soft': colors.bgSoft,
-  '--color-bg-card': colors.bgCard,
-  '--color-blue': colors.blue,
-  '--color-blue-bg': colors.blueBg,
-  '--color-danger': colors.danger,
-  '--color-success': colors.success,
-  '--color-warning': colors.warning,
+  ...Object.fromEntries(Object.entries(colors).map(([k, v]) => [`--color-${kebab(k)}`, v])),
+  ...Object.fromEntries(
+    Object.entries(pageColors).flatMap(([page, group]) =>
+      Object.entries(group).map(([k, v]) => [`--${page}-${kebab(k)}`, v]),
+    ),
+  ),
   '--header-h': `${layout.headerHeight}px`,
   '--sider-w': `${layout.siderWidth}px`,
   '--sider-w-c': `${layout.siderCollapsedWidth}px`,

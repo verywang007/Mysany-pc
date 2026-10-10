@@ -10,4 +10,8 @@ export const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
   '/policy-update': lazy(() => import('@/pages/policy-update')),
   '/enterprise/profile': lazy(() => import('@/pages/enterprise/profile')),
   '/enterprise/self-service': lazy(() => import('@/pages/enterprise/self-service')),
+  '/enterprise/tenant': lazy(() => import('@/pages/enterprise/tenant')),
+  '/enterprise/organization': lazy(() => import('@/pages/enterprise/organization')),
+  '/enterprise/user': lazy(() => import('@/pages/enterprise/user')),
+  '/enterprise/role': lazy(() => import('@/pages/enterprise/role')),
 };

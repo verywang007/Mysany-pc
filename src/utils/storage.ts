@@ -16,6 +16,16 @@ export const STORAGE_KEYS = {
   route: 'ms_route',
   /** 已同意的协议版本（协议变更） */
   policyAgreedVersion: 'mysany.policy.agreedVersion',
+  /** 租户管理演示数据 { tenant, authentications } */
+  tenantDemo: 'ms_tenant_management_demo',
+  /** 租户负责人用户 id：租户管理页写入，组织管理页只读（覆盖根组织负责人） */
+  tenantOwnerId: 'ms_tenant_owner_id',
+  /** 组织管理演示数据（组织树数组）；租户管理页转让负责人时会改写 [0].leaderId */
+  orgDemo: 'ms_org_management_demo',
+  /** 用户管理演示数据 { users, invites } */
+  userDemo: 'ms_user_management_demo',
+  /** 角色管理演示数据 Role[] */
+  roleDemo: 'ms_role_management_demo',
 } as const;
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];

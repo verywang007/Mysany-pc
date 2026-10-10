@@ -1,4 +1,8 @@
 import type { ThemeConfig } from 'antd';
+import { organizationColors } from './pages/organization';
+import { roleColors } from './pages/role';
+import { tenantColors } from './pages/tenant';
+import { userColors } from './pages/user';
 
 /**
  * 设计 token：取自原型 app.css 的 :root 变量（按登录后真实页面实测）。
@@ -49,7 +53,7 @@ export const shadows = {
  * 页面专用色：只在某个页面出现、不适合放进全局语义色的取样值。
  * 按页面分组，CSS 里以 var(--<页面>-<名称>) 引用，例如 var(--login-ink)。
  */
-export const pageColors = {
+export const pageColors: Record<string, Record<string, string>> = {
   /** 主布局（取自原型 app.css）：侧栏底部装饰、头像底色 */
   shell: {
     decoFrom: '#e8f7ee',
@@ -112,6 +116,11 @@ export const pageColors = {
     btnDisabledBg: 'rgba(198, 0, 11, .38)',
     focusRing: '0 0 0 3px rgba(198, 0, 11, .18)',
   },
+  /** 企业服务四页：各自一个文件（theme/pages），便于分别维护 */
+  tenant: tenantColors,
+  organization: organizationColors,
+  user: userColors,
+  role: roleColors,
   /** Cookies 偏好中心（取自原型 cookies.css） */
   cookies: {
     switchOff: '#d5d9e0',

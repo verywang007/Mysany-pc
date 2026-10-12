@@ -1,9 +1,9 @@
 import { COOKIES } from '@/mock/common/cookies';
-import { STORAGE_KEYS, readJSON, writeJSON } from '@/utils/storage';
+import { STORAGE_KEYS, readJSON, readText, writeJSON, writeText } from '@/utils/storage';
 
 /**
  * 用户偏好设置（ms_settings）：Cookie 四个分类的启用状态 + 个性化广告开关。
- * 登录页的 Cookies 设置入口与工作台「设置」弹窗读写的是同一份数据。
+ * 登录后「设置」弹窗读写的是这份数据；首次进入的 Cookie 同意横幅也写入这里。
  */
 
 export type CookieCategoryKey = 'ckNecessary' | 'ckFunctional' | 'ckAnalytics' | 'ckAds';
@@ -59,6 +59,21 @@ export function saveCookieFlags(flags: CookieFlags): Settings {
   const next = { ...loadSettings(), ...flags, ckNecessary: true };
   saveSettings(next);
   return next;
+}
+
+/** 已做出选择的标记值 */
+const CONSENT_MARK = '1';
+
+/**
+ * 是否已做出过 Cookie 选择。登录后首次进入的同意横幅只在未选择时出现；
+ * 选择结果记在独立的 ms_cookie_consent，与具体偏好（ms_settings）解耦。
+ */
+export function hasCookieConsent(): boolean {
+  return readText(STORAGE_KEYS.cookieConsent) === CONSENT_MARK;
+}
+
+export function markCookieConsent(): void {
+  writeText(STORAGE_KEYS.cookieConsent, CONSENT_MARK);
 }
 
 export function pickCookieFlags(settings: CookieFlags): CookieFlags {

@@ -1,19 +1,14 @@
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { App, Button, Checkbox, Dropdown, Input } from 'antd';
 import { CaretDownFilled, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import logo from '@/assets/icon-mysanyLogo.svg';
 import qrCorner from '@/assets/login-qr-corner.png';
-import CookiePreferences from '@/components/CookiePreferences';
+import CookieConsent from '@/components/CookieConsent';
 import { pageTitle } from '@/config/app';
 import { HOME_PATH } from '@/router/resolve';
-import {
-  COOKIE_CATEGORY_TOTAL,
-  enabledCookieCount,
-  loadSettings,
-} from '@/services/common/settings';
 import { STORAGE_KEYS, readText, writeText } from '@/utils/storage';
-import { CookieIcon, GlobeIcon, KeyIcon, UserIcon } from './components/icons';
+import { GlobeIcon, KeyIcon, UserIcon } from './components/icons';
 import {
   DEFAULT_LANG,
   DEMO_ACCOUNT,
@@ -33,7 +28,8 @@ const readLang = (): LoginLang => {
 };
 
 /**
- * 登录页：语言切换、密码 / 验证码两种登录方式、两行独立协议勾选、Cookies 设置入口。
+ * 登录页：语言切换、密码 / 验证码两种登录方式、两行独立协议勾选、底部 Cookie 授权横幅。
+ * Cookie 设置只在登录页首次进入时由底部横幅（CookieConsent）完成，之后只能在登录后的「设置」里修改。
  * 规格见 docs/page-specs/登录.md。
  */
 export default function Login() {
@@ -53,9 +49,6 @@ export default function Login() {
 
   const [countdown, setCountdown] = useState(0);
   const timer = useRef<number>();
-
-  const [cookieOpen, setCookieOpen] = useState(false);
-  const [cookieCount, setCookieCount] = useState(() => enabledCookieCount(loadSettings()));
 
   useEffect(() => {
     document.title = pageTitle('登录');
@@ -112,13 +105,6 @@ export default function Login() {
   };
 
   const openDoc = (name: string) => message.info(t.openDoc + name);
-
-  const onCookieKey = (e: KeyboardEvent) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      setCookieOpen(true);
-    }
-  };
 
   const agreeLine = (checked: boolean, onChange: (v: boolean) => void, docName: string) => (
     <Checkbox
@@ -251,24 +237,6 @@ export default function Login() {
               {agreeLine(agreeService, setAgreeService, t.serviceAgreement)}
             </div>
 
-            <div className={styles.cookie}>
-              <span
-                className={styles.cookieLink}
-                role="button"
-                tabIndex={0}
-                onClick={() => setCookieOpen(true)}
-                onKeyDown={onCookieKey}
-              >
-                <CookieIcon />
-                <span>{t.cookieSettings}</span>
-              </span>
-              <span className={styles.cookieStatus}>
-                {t.cookieStatus
-                  .replace('{n}', String(cookieCount))
-                  .replace('{m}', String(COOKIE_CATEGORY_TOTAL))}
-              </span>
-            </div>
-
             <Button
               type="primary"
               htmlType="submit"
@@ -288,13 +256,8 @@ export default function Login() {
         </div>
       </div>
 
-      <CookiePreferences
-        open={cookieOpen}
-        onClose={() => {
-          setCookieOpen(false);
-          setCookieCount(enabledCookieCount(loadSettings()));
-        }}
-      />
+      {/* 首次进入必须先完成底部的 Cookie 授权，之后只能在登录后的「设置」里修改 */}
+      <CookieConsent />
     </div>
   );
 }

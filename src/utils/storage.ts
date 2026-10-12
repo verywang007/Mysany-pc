@@ -4,8 +4,10 @@
  * 读写失败（隐私模式、配额满）时静默降级，原型照常可用。
  */
 export const STORAGE_KEYS = {
-  /** 设置：Cookie 各分类开关 + 个性化广告（登录页与工作台共用） */
+  /** 设置：Cookie 各分类开关 + 个性化广告（登录后「设置」弹窗读写） */
   settings: 'ms_settings',
+  /** Cookie 同意横幅是否已做出过选择，'1' 表示已选择（不再弹出） */
+  cookieConsent: 'ms_cookie_consent',
   /** 界面语言（登录页） */
   lang: 'mysany_lang',
   /** 侧栏是否折叠，'1' / '0' */

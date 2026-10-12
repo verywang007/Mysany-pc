@@ -35,23 +35,3 @@ export function GlobeIcon() {
   );
 }
 
-export function CookieIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      width="15"
-      height="15"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M12 3a9 9 0 1 0 9 9 4 4 0 0 1-4.6-4.4A4 4 0 0 1 12 3z" />
-      <circle cx="9.5" cy="11" r="1" fill="currentColor" stroke="none" />
-      <circle cx="14" cy="14.5" r="1" fill="currentColor" stroke="none" />
-      <circle cx="9" cy="15.5" r="1" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}

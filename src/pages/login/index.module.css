@@ -259,42 +259,6 @@
   text-decoration: underline;
 }
 
-/* Cookies 设置入口 */
-.cookie {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin: -8px 0 24px;
-  font-size: 13px;
-}
-
-.cookieLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  color: var(--login-muted);
-  cursor: pointer;
-  user-select: none;
-}
-
-.cookieLink:hover {
-  color: var(--color-primary);
-}
-
-.cookieLink:hover span {
-  text-decoration: underline;
-}
-
-.cookieStatus {
-  color: var(--login-placeholder);
-}
-
-.cookieStatus::before {
-  content: '·';
-  margin-right: 7px;
-}
-
 /* 登录按钮：置灰为浅红底 */
 .submit:global(.ant-btn) {
   height: 40px;

@@ -1,0 +1,241 @@
+/* 开通状态页：尺寸与色值取自线上 gioms 的 .my-sany-auth-login 组件样式，专用色见 theme/index.ts 的 pageColors.liftAccount */
+.page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: var(--lift-account-bg);
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 520px;
+  padding: 40px 36px 98px;
+  background: var(--lift-account-card-bg);
+  border: 1px solid var(--lift-account-card-border);
+  border-radius: 12px;
+  box-shadow: var(--lift-account-card-shadow);
+}
+
+.iconBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: var(--lift-account-icon-bg);
+}
+
+.title {
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: center;
+  color: var(--lift-account-title);
+}
+
+.content {
+  margin-bottom: 24px;
+  font-size: 13px;
+  line-height: 22px;
+  text-align: center;
+  color: var(--lift-account-muted);
+}
+
+/* 申请信息 */
+.cardList {
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 16px;
+  background: var(--lift-account-info-bg);
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.item:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  color: var(--lift-account-muted);
+}
+
+.value {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 21px;
+  text-align: right;
+  color: var(--lift-account-value);
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--lift-account-brand);
+}
+
+.statusDotActive {
+  background: var(--lift-account-success);
+}
+
+.statusText {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 21px;
+  color: var(--lift-account-brand);
+}
+
+.statusTextActive {
+  color: var(--lift-account-success);
+}
+
+/* 进度条 */
+.progress {
+  width: 100%;
+  margin-bottom: 24px;
+  padding: 0 50px;
+}
+
+.circleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+  padding: 0 10px;
+}
+
+.circleBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+}
+
+.circleBoxActive {
+  width: 36px;
+  height: 36px;
+  background: var(--lift-account-step-halo);
+}
+
+.stepCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 29px;
+  height: 29px;
+  border: 1px solid var(--lift-account-step-border);
+  border-radius: 50%;
+}
+
+.stepCircleActive {
+  border: none;
+  background: var(--lift-account-brand);
+}
+
+.stepNum {
+  font-size: 13px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--lift-account-step-muted);
+}
+
+.stepCircleActive .stepNum {
+  font-weight: 700;
+  color: #fff;
+}
+
+.line {
+  flex: 1;
+  height: 2px;
+  background: var(--lift-account-step-line);
+}
+
+.lineActive {
+  background: var(--lift-account-brand);
+}
+
+.stepTextRow {
+  display: flex;
+  justify-content: space-between;
+}
+
+.stepLabel {
+  height: 20px;
+  font-size: 12px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--lift-account-step-muted);
+}
+
+.stepLabelActive {
+  font-weight: 600;
+  color: var(--lift-account-brand);
+}
+
+/* 操作按钮 */
+.btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.btns > * {
+  cursor: pointer;
+  user-select: none;
+}
+
+.returnBtn {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0;
+  background: #fff;
+  border: 1px solid var(--lift-account-btn-border);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--lift-account-btn-text);
+}
+
+.submitBtn {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding: 0;
+  background: var(--lift-account-brand);
+  border: none;
+  box-shadow: var(--lift-account-brand-shadow);
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.tooltip {
+  font-size: 12px;
+  line-height: 18px;
+  text-align: center;
+  color: var(--lift-account-step-muted);
+}

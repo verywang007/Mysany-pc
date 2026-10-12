@@ -189,15 +189,19 @@ export const MENU: MenuNode[] = [
 /** 未实现页面的路由前缀，后接菜单 key */
 export const BUILDING_PREFIX = '/building/';
 
+/** 吊装规划入口的落地页：发电机组智慧运营系统开通状态页（主布局之外，见 main.tsx） */
+export const LIFT_ACTIVATION_PATH = '/lift-activation';
+
 /**
  * 不在侧栏显示、但有独立页面的入口（从其他页面跳转进入）。
  * 吊装规划：按 2026-10-10 确认，从一级菜单移除，改由工作台「快速链接」进入。
+ * 按 2026-10-11 线上页面，该入口打开的是「发电机组智慧运营系统」第三方账号开通 / 审核状态页。
  */
 export const HIDDEN_PAGES: MenuNode[] = [
   {
     key: 'lift-plan',
     label: '吊装规划',
-    path: '/lift-planning',
+    path: LIFT_ACTIVATION_PATH,
     systemPath: '/standard/liftPlanning/liftPlanning',
   },
   /** 协议变更演示页（原型 协议变更.html）：工作台 + 更新提示弹窗 */

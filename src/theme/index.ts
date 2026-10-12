@@ -137,6 +137,30 @@ export const pageColors: Record<string, Record<string, string>> = {
     grid: '#f6f7f9',
     folder: '#f7b500',
   },
+  /**
+   * 吊装规划 · 系统开通状态页（取自线上 gioms 第三方账号开通 / 审核状态页，
+   * 该页属于「发电机组智慧运营系统」，色值体系与主站不同，故单独一组）
+   */
+  liftAccount: {
+    bg: '#fafafa',
+    cardBg: '#ffffff',
+    cardBorder: '#e4e4e4',
+    cardShadow: '0 4px 32px rgba(0, 0, 0, .1)',
+    iconBg: '#fff1f2',
+    title: '#1c1c1c',
+    muted: '#818181',
+    value: '#394050',
+    brand: '#c5000a',
+    brandShadow: '0 3px 7px rgba(197, 0, 10, .1)',
+    success: '#06b600',
+    infoBg: '#f6f6f6',
+    stepBorder: '#d5d8d9',
+    stepHalo: '#fadde0',
+    stepLine: '#dddddd',
+    stepMuted: '#a3a7ad',
+    btnBorder: '#d9d9d9',
+    btnText: '#353d42',
+  },
   /** 企业服务四页：各自一个文件（theme/pages），便于分别维护 */
   tenant: tenantColors,
   organization: organizationColors,
@@ -160,7 +184,7 @@ export const cssVars: Record<string, string> = {
   ...Object.fromEntries(Object.entries(colors).map(([k, v]) => [`--color-${kebab(k)}`, v])),
   ...Object.fromEntries(
     Object.entries(pageColors).flatMap(([page, group]) =>
-      Object.entries(group).map(([k, v]) => [`--${page}-${kebab(k)}`, v]),
+      Object.entries(group).map(([k, v]) => [`--${kebab(page)}-${kebab(k)}`, v]),
     ),
   ),
   '--header-h': `${layout.headerHeight}px`,

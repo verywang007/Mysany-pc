@@ -7,11 +7,14 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/zh-cn';
 import { cssVars, theme } from '@/theme';
 import { registerFonts } from '@/theme/fonts';
+import { LIFT_ACTIVATION_PATH } from '@/config/menu';
 import BasicLayout from '@/layouts/BasicLayout';
 import { LOGIN_PATH } from '@/router/resolve';
 import '@/theme/global.css';
 
 const Login = lazy(() => import('@/pages/login'));
+/** 吊装规划入口的落地页不在主布局内（线上该页独立打开） */
+const LiftActivation = lazy(() => import('@/pages/lift-activation'));
 
 dayjs.locale('zh-cn');
 registerFonts();
@@ -30,6 +33,14 @@ createRoot(document.getElementById('root')!).render(
               element={
                 <Suspense fallback={null}>
                   <Login />
+                </Suspense>
+              }
+            />
+            <Route
+              path={LIFT_ACTIVATION_PATH}
+              element={
+                <Suspense fallback={null}>
+                  <LiftActivation />
                 </Suspense>
               }
             />

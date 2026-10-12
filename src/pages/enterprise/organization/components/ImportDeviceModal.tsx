@@ -85,7 +85,9 @@ export default function ImportDeviceModal({ tree, onCancel, onSave }: Props) {
         <div className={styles.uploadBox}>
           <UploadOutlined className={styles.uploadIcon} />
           <p>拖放文件到此处或点击选择文件</p>
-          <small>请下载标准的 Excel 模板，按照模板字段（设备编号、所属组织）填写后上传文件</small>
+          <small>
+            请下载标准的 Excel 模板，按照模板字段（设备编号、组织1、组织2、组织3、组织4、组织5）填写后上传文件，如有更多组织可自行添加序号
+          </small>
           <Upload
             accept={IMPORT_ACCEPT}
             showUploadList={false}

@@ -126,6 +126,7 @@ export const AUDIT_EVENTS: Record<AuditCategoryKey, AuditEvent[]> = {
  * 快速链接：k 为菜单 key。
  * 按 2026-10-10 确认，第 4 项由「项目管理」改为「吊装规划」入口（吊装规划已移出一级菜单）。
  * 按 2026-10-11 确认，吊装规划入口跳转到「发电机组智慧运营系统」开通状态页（/lift-activation）。
+ * 按 2026-10-12 确认，吊装规划入口改为新开浏览器标签页进入外部系统。
  */
 export const QUICK_LINKS: QuickLink[] = [
   {
@@ -151,5 +152,6 @@ export const QUICK_LINKS: QuickLink[] = [
     icon: 'lift',
     label: '吊装规划',
     tone: 'blue',
+    href: 'https://dzgh-test.sany.com.cn/#/project/welcome',
   },
 ];

@@ -37,8 +37,10 @@ export interface AuditEvent {
 }
 
 export interface QuickLink {
-  /** 目标菜单 key */
+  /** 目标菜单 key（有 href 时忽略） */
   k: string;
+  /** 外部链接：有值时新开浏览器标签页打开，不走站内路由 */
+  href?: string;
   icon: string;
   label: string;
   tone: QuickTone;

@@ -84,7 +84,13 @@ export default function Workbench() {
         <SectionHeader title="快速链接" />
         <div className={`${styles.grid} ${styles.g4}`}>
           {data?.quick.map((q) => (
-            <div key={q.k} className={styles.quick} onClick={() => go(q.k)}>
+            <div
+              key={q.k}
+              className={styles.quick}
+              onClick={() =>
+                q.href ? window.open(q.href, '_blank', 'noopener,noreferrer') : go(q.k)
+              }
+            >
               <span className={`${styles.quickIcon} ${styles[`quick-${q.tone}`]}`}>
                 <Icon name={q.icon} size={17} />
               </span>

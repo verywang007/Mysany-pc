@@ -195,7 +195,8 @@ export const LIFT_ACTIVATION_PATH = '/lift-activation';
 /**
  * 不在侧栏显示、但有独立页面的入口（从其他页面跳转进入）。
  * 吊装规划：按 2026-10-10 确认，从一级菜单移除，改由工作台「快速链接」进入。
- * 按 2026-10-11 线上页面，该入口打开的是「发电机组智慧运营系统」第三方账号开通 / 审核状态页。
+ * 按 2026-10-12 确认，工作台快速链接改为新开标签页进入外部系统
+ * （https://dzgh-test.sany.com.cn/#/project/welcome）；/lift-activation 落地页仅保留直接输 URL 访问。
  */
 export const HIDDEN_PAGES: MenuNode[] = [
   {

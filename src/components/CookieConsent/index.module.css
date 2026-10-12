@@ -1,0 +1,99 @@
+/* 授权前的透明遮罩：铺满视口拦截交互，不改变页面亮度（与截图一致） */
+.mask {
+  position: fixed;
+  inset: 0;
+  z-index: 790;
+  background: transparent;
+}
+
+/* 底部同意横幅：白底、顶边线，固定在视口底部（低于 Modal / Drawer 层） */
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 800;
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+  padding: 16px 40px;
+  background: #fff;
+  border-top: 1px solid var(--color-line-2);
+  font-family:
+    -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+
+.text {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.desc {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--color-text-2);
+}
+
+.policy {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--color-blue);
+  cursor: pointer;
+}
+
+.policy:hover {
+  text-decoration: underline;
+}
+
+/* 右侧：两个按钮一行，「管理首选项」在下一行右对齐 */
+.actions {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+
+.buttons {
+  display: flex;
+  gap: 12px;
+}
+
+/* 截图样式：两个按钮都是蓝色实心白字（与站内主题红不同，这里按截图取蓝色） */
+.buttons :global(.ant-btn) {
+  min-width: 96px;
+  height: 32px;
+  padding: 0 16px;
+  border: none;
+  border-radius: 2px;
+  font-size: 13px;
+  box-shadow: none;
+  background: var(--color-blue);
+}
+
+.buttons :global(.ant-btn:not(:disabled):hover) {
+  background: var(--color-blue);
+  filter: brightness(0.92);
+}
+
+.manage {
+  font-size: 12px;
+  color: var(--color-blue);
+  cursor: pointer;
+}
+
+.manage:hover {
+  text-decoration: underline;
+}

@@ -6,8 +6,8 @@ import panelStyles from './panels.module.css';
 const styles = { ...modalStyles, ...panelStyles };
 
 interface Props {
-  /** 上传框小字 */
-  hint: string;
+  /** 上传框小字，不传则不显示 */
+  hint?: string;
   onFile: (file: File) => void;
 }
 
@@ -39,7 +39,7 @@ export default function UploadBox({ hint, onFile }: Props) {
         <path d="M4 15v5h16v-5" />
       </svg>
       <p>拖放文件到此处或点击选择文件</p>
-      <small>{hint}</small>
+      {hint && <small>{hint}</small>}
       <Button>选择文件</Button>
     </Upload.Dragger>
   );

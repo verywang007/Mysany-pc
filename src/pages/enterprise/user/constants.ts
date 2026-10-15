@@ -1,3 +1,4 @@
+import type { XlsxSheet } from '@/utils/xlsx';
 import type { DeviceScope, InviteStatus } from '@/services/enterprise/user';
 
 /** 设备范围类型名称；查询区「设备类型」下拉的选项顺序同此 */
@@ -41,15 +42,34 @@ export function strongPassword(v: string): boolean {
 export const PASSWORD_RULE_TEXT = '密码需为6-32位，并包含至少3类字符';
 export const PASSWORD_MISMATCH_TEXT = '两次输入的密码不一致';
 
-/** 导入模板（原型如此：用户导入模板无 BOM、无示例行；设备分配模板带 BOM） */
+/** 用户导入模板（原型如此：无 BOM、无示例行） */
 export const USER_TEMPLATE = {
   fileName: '用户导入模板.csv',
   content: '姓名,国家区号,手机号,邮箱,所属组织,角色\n',
 };
 
-export const ASSIGN_TEMPLATE = {
-  fileName: '设备分配导入模板.csv',
-  content: '\ufeff用户姓名,所属组织,型号,设备编号\nxhh,2603181012测试客户,搅拌车,HPGJ1041000683\n',
+/** 设备分配导入模板（.xlsx，两个 sheet，均附示例行） */
+export const ASSIGN_TEMPLATE: { fileName: string; sheets: XlsxSheet[] } = {
+  fileName: '设备分配导入模板.xlsx',
+  sheets: [
+    {
+      name: '设备分配',
+      widths: [16, 16, 22, 14, 20],
+      rows: [
+        ['用户姓名', '用户编号', '所属组织', '型号', '设备编号'],
+        ['xhh', 'U0001', '2603181012测试客户', '搅拌车', 'HPGJ1041000683'],
+        ['xhh', 'U0001', '2603181012测试客户', '全路面起重机', 'AC0130CD0002'],
+      ],
+    },
+    {
+      name: '用户信息',
+      widths: [16, 16],
+      rows: [
+        ['用户姓名', '用户编号'],
+        ['xhh', 'U0001'],
+      ],
+    },
+  ],
 };
 
 export const UPLOAD_ACCEPT = '.xlsx,.xls,.csv';

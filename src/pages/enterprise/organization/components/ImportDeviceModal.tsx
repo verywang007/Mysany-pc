@@ -7,6 +7,7 @@ import {
   type ImportRow,
   type OrgNode,
 } from '@/services/enterprise/organization';
+import { buildXlsx } from '@/utils/xlsx';
 import { FALLBACK_IMPORT_FILE, IMPORT_ACCEPT, TEMPLATE_FILE_NAME } from '../constants';
 import OrgModal from './OrgModal';
 import styles from '../index.module.css';
@@ -25,11 +26,9 @@ const COLUMNS: TableColumnsType<Row> = [
   },
 ];
 
-const BOM = String.fromCharCode(0xfeff);
-
-/** 下载模板（UTF-8 BOM）：Blob + a[download]，file:// 下也可用 */
+/** 下载模板（.xlsx，两个 sheet）：Blob + a[download]，file:// 下也可用 */
 function downloadTemplate() {
-  const blob = new Blob([BOM + deviceImportTemplate()], { type: 'text/csv;charset=utf-8' });
+  const blob = buildXlsx(deviceImportTemplate());
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -86,7 +85,9 @@ export default function ImportDeviceModal({ tree, onCancel, onSave }: Props) {
           <UploadOutlined className={styles.uploadIcon} />
           <p>拖放文件到此处或点击选择文件</p>
           <small>
-            请下载标准的 Excel 模板，按照模板字段（设备编号、组织1、组织2、组织3、组织4、组织5）填写后上传文件，如有更多组织可自行添加序号
+            请下载标准的 Excel 模板，按照模板填写后上传文件：Sheet1
+            填写设备编号、组织名称1、组织编码1、组织名称2、组织编码2、组织名称3、组织编码3（更多组织可继续手动添加列）；Sheet2
+            填写组织名称、组织编码
           </small>
           <Upload
             accept={IMPORT_ACCEPT}

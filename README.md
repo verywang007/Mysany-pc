@@ -34,6 +34,7 @@ npm run dev      # 启动开发服务器，浏览器打开 http://localhost:5174
 | 模块 | 页面 | 路由 | 页面规格 / 文档 |
 |---|---|---|---|
 | — | 登录 | `#/login` | [登录](docs/page-specs/登录.md) |
+| — | Cookies 同意（首次进入由路由守卫触发） | `#/cookies-consent` | [Cookies 同意页](docs/page-specs/公共-Cookies同意页.md) |
 | 工作台 | 工作台 | `#/workbench` | [工作台](docs/page-specs/工作台.md) |
 | 工作台 | 协议变更（演示：进入即弹出更新提示） | `#/policy-update` | [协议变更](docs/page-specs/协议变更.md) |
 | 工作台 | 吊装规划（入口：工作台快速链接） | `#/lift-planning` | [吊装规划](docs/page-specs/吊装规划.md)、[PRD](docs/requirements/吊装规划-PRD.md) |
@@ -44,7 +45,11 @@ npm run dev      # 启动开发服务器，浏览器打开 http://localhost:5174
 | 企业服务 | 角色管理 | `#/enterprise/role` | [角色管理](docs/page-specs/企业服务-角色管理.md) |
 | 企业服务 | 自助服务 | `#/enterprise/self-service` | |
 
-公共部分：顶栏（消息 / 语言 / 租户 / 用户下拉）、侧栏（折叠态浮层子菜单）、设置弹窗、Cookies 偏好中心，见 [外壳与菜单](docs/page-specs/公共-外壳与菜单.md)、[设置弹窗](docs/page-specs/公共-设置弹窗.md)、[Cookies 偏好中心](docs/page-specs/公共-Cookies偏好中心.md)。
+公共部分：顶栏（场景目录 / 消息 / 语言 / 租户 / 用户下拉）、侧栏（折叠态浮层子菜单）、设置弹窗、Cookies 同意页、Cookies 偏好中心，见 [外壳与菜单](docs/page-specs/公共-外壳与菜单.md)、[设置弹窗](docs/page-specs/公共-设置弹窗.md)、[Cookies 偏好中心](docs/page-specs/公共-Cookies偏好中心.md)。
+
+**Cookies 同意**（`#/cookies-consent`）：未做出过 Cookie 选择时，访问 `/login` 或任意业务页面都会被路由守卫重定向到这里（`?redirect=` 记录原路径），选择完成后自动返回。页面完整显示登录窗口（与登录页一致），底部叠加同款同意横幅；**完成选择前登录窗口不可操作**。选择结果记在 `ms_cookie_consent`，偏好写在 `ms_settings`；登录后如需修改，走「设置」弹窗 → Cookies 设置。
+
+**场景目录**（`#/scenes`）：顶栏 logo 右侧的九宫格按钮进入，把菜单树里全部页面（含未实现的「建设中」占位）与独立入口（登录 / Cookies 同意 / 协议更新提示 / 吊装激活）平铺成卡片，点击直达，方便评审时逐个查看。
 
 其余菜单保留在侧栏中，点击后显示占位页。
 

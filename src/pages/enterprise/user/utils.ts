@@ -3,7 +3,12 @@
  * 内容开头的 U+FEFF 会按 UTF-8 编码写成 BOM。
  */
 export function downloadText(fileName: string, content: string, type = 'text/csv;charset=utf-8') {
-  const url = URL.createObjectURL(new Blob([content], { type }));
+  downloadBlob(fileName, new Blob([content], { type }));
+}
+
+/** 下载任意 Blob（如 xlsx 模板） */
+export function downloadBlob(fileName: string, blob: Blob) {
+  const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
   a.download = fileName;

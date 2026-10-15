@@ -1,7 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { App, Dropdown, type MenuProps } from 'antd';
-import { BellOutlined, CaretDownFilled, DownOutlined, GlobalOutlined } from '@ant-design/icons';
+import { App, Dropdown, Tooltip, type MenuProps } from 'antd';
+import {
+  AppstoreOutlined,
+  BellOutlined,
+  CaretDownFilled,
+  DownOutlined,
+  GlobalOutlined,
+} from '@ant-design/icons';
 import logo from '@/assets/icon-mysanyLogo.svg';
 import { CURRENT_TENANT, CURRENT_USER, LANGUAGE_OPTIONS, TENANT_LIST } from '@/config/app';
 import { LOGIN_PATH } from '@/router/resolve';
@@ -85,6 +91,16 @@ export default function Header({ collapsed }: Props) {
       <div className={collapsed ? `${styles.logo} ${styles.logoCollapsed}` : styles.logo}>
         <img src={logo} alt="My SANY" />
       </div>
+      <Tooltip title="场景目录">
+        <button
+          type="button"
+          aria-label="场景目录"
+          className={styles.scenesBtn}
+          onClick={() => navigate('/scenes')}
+        >
+          <AppstoreOutlined />
+        </button>
+      </Tooltip>
       <div className={styles.spacer} />
       <div className={styles.right}>
         <Dropdown

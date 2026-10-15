@@ -1,0 +1,112 @@
+.page {
+  padding: 24px 32px 40px;
+  min-height: 100%;
+  background: var(--color-bg-soft);
+}
+
+.head {
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--color-text-2);
+}
+
+.group {
+  margin-bottom: 28px;
+}
+
+.groupName {
+  margin: 0 0 12px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--color-line-2);
+  border-radius: 4px;
+  padding: 12px 14px;
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+
+.card:hover,
+.card:focus-visible {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  outline: none;
+}
+
+.card:active {
+  transform: translateY(1px);
+}
+
+.cardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.cardName {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text);
+}
+
+.tag {
+  flex: 0 0 auto;
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 0 6px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.tagImpl {
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
+}
+
+.tagBuilding {
+  color: var(--workbench-amber);
+  background: var(--workbench-amber-bg);
+}
+
+.tagStandalone {
+  color: var(--color-blue);
+  background: var(--color-blue-bg);
+}
+
+.path {
+  font-size: 12px;
+  color: var(--color-text-2);
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Consolas, monospace;
+  word-break: break-all;
+}
+
+.system {
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--color-text-4);
+  word-break: break-all;
+}

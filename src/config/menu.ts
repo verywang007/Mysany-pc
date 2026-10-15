@@ -192,6 +192,9 @@ export const BUILDING_PREFIX = '/building/';
 /** 吊装规划入口的落地页：发电机组智慧运营系统开通状态页（主布局之外，见 main.tsx） */
 export const LIFT_ACTIVATION_PATH = '/lift-activation';
 
+/** Cookie 同意页：全屏独立页面，路由级守卫触发（见 main.tsx） */
+export const COOKIE_CONSENT_PATH = '/cookies-consent';
+
 /**
  * 不在侧栏显示、但有独立页面的入口（从其他页面跳转进入）。
  * 吊装规划：按 2026-10-10 确认，从一级菜单移除，改由工作台「快速链接」进入。
@@ -207,6 +210,10 @@ export const HIDDEN_PAGES: MenuNode[] = [
   },
   /** 协议变更演示页（原型 协议变更.html）：工作台 + 更新提示弹窗 */
   { key: 'policy-update', label: '协议更新提示', path: '/policy-update', activeKey: 'workbench' },
+  /** 场景目录：所有页面集合（仅通过顶栏按钮 / URL 访问，不在侧栏显示） */
+  { key: 'scenes', label: '场景目录', path: '/scenes' },
+  /** Cookie 同意页：路由级守卫触发 + URL 直接访问（不在侧栏显示） */
+  { key: 'cookie-consent', label: 'Cookies 同意', path: COOKIE_CONSENT_PATH },
 ];
 
 export interface MenuLeaf extends MenuNode {

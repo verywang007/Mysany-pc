@@ -4,7 +4,6 @@ import { App, Button, Checkbox, Dropdown, Input } from 'antd';
 import { CaretDownFilled, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import logo from '@/assets/icon-mysanyLogo.svg';
 import qrCorner from '@/assets/login-qr-corner.png';
-import CookieConsent from '@/components/CookieConsent';
 import { pageTitle } from '@/config/app';
 import { HOME_PATH } from '@/router/resolve';
 import { STORAGE_KEYS, readText, writeText } from '@/utils/storage';
@@ -28,8 +27,9 @@ const readLang = (): LoginLang => {
 };
 
 /**
- * 登录页：语言切换、密码 / 验证码两种登录方式、两行独立协议勾选、底部 Cookie 授权横幅。
- * Cookie 设置只在登录页首次进入时由底部横幅（CookieConsent）完成，之后只能在登录后的「设置」里修改。
+ * 登录页：语言切换、密码 / 验证码两种登录方式、两行独立协议勾选。
+ * 首次进入时由路由级守卫（RequireConsent）重定向到独立的 Cookies 同意页（#/cookies-consent），
+ * 选择完成后回到本页；之后只能在登录后的「设置」里修改。
  * 规格见 docs/page-specs/登录.md。
  */
 export default function Login() {
@@ -255,9 +255,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-
-      {/* 首次进入必须先完成底部的 Cookie 授权，之后只能在登录后的「设置」里修改 */}
-      <CookieConsent />
     </div>
   );
 }

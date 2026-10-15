@@ -29,7 +29,7 @@ export function validateOrgName(name: string): { msg: string; bad: boolean } | n
 }
 
 /** 设备导入模板文件名 */
-export const TEMPLATE_FILE_NAME = '设备导入模板.csv';
+export const TEMPLATE_FILE_NAME = '设备导入模板.xlsx';
 /** 未取到文件名时的回退 */
 export const FALLBACK_IMPORT_FILE = '设备导入模板.xlsx';
 export const IMPORT_ACCEPT = '.xlsx,.xls,.csv';

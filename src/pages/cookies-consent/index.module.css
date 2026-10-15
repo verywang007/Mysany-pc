@@ -1,4 +1,4 @@
-/* 授权前的透明遮罩：铺满视口拦截交互，不改变页面亮度（与截图一致） */
+/* 授权前的透明遮罩：铺满视口拦截交互，不改变页面亮度（登录窗口此时不可操作） */
 .mask {
   position: fixed;
   inset: 0;
@@ -71,7 +71,7 @@
   gap: 12px;
 }
 
-/* 截图样式：两个按钮都是蓝色实心白字（与站内主题红不同，这里按截图取蓝色） */
+/* 截图样式：两个按钮都是蓝色实心白字 */
 .buttons :global(.ant-btn) {
   min-width: 96px;
   height: 32px;
@@ -96,4 +96,16 @@
 
 .manage:hover {
   text-decoration: underline;
+}
+
+/* 窄屏：文案与按钮换行显示 */
+@media (max-width: 720px) {
+  .bar {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .actions {
+    align-items: flex-start;
+  }
 }

@@ -6,7 +6,8 @@ import {
   type AssignImportRow,
 } from '@/services/enterprise/user';
 import { ASSIGN_TEMPLATE, MODAL_WIDTH } from '../constants';
-import { downloadText } from '../utils';
+import { buildXlsx } from '@/utils/xlsx';
+import { downloadBlob } from '../utils';
 import BoxTable from './BoxTable';
 import { StatusTag } from './Tags';
 import UmModal from './UmModal';
@@ -74,16 +75,13 @@ export default function ImportAssignModal({ onClose, onSaved }: Props) {
         <Button
           type="link"
           className={styles.link}
-          onClick={() => downloadText(ASSIGN_TEMPLATE.fileName, ASSIGN_TEMPLATE.content)}
+          onClick={() => downloadBlob(ASSIGN_TEMPLATE.fileName, buildXlsx(ASSIGN_TEMPLATE.sheets))}
         >
           下载导入模板
         </Button>
       </div>
       {!rows.length ? (
-        <UploadBox
-          hint="请下载标准的 Excel 模板，按照模板字段（用户姓名、所属组织、型号、设备编号）填写后上传文件"
-          onFile={pick}
-        />
+        <UploadBox onFile={pick} />
       ) : (
         <>
           <div className={styles.summary}>

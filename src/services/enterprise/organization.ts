@@ -63,14 +63,21 @@ export interface MemberRow extends OrgUser {
   joined: string;
 }
 
-/** 设备列表行：所属组织为深度优先第一个持有该设备的组织 */
+/**
+ * 设备列表行。设备为**多归属**：同一台设备可同时挂到多个组织，
+ * orgId / orgName / allocated 取深度优先第一个归属（主归属），orgIds / orgNames 为全部归属。
+ */
 export interface DeviceRow extends OrgDevice {
-  /** 分配时间，未分配为 '-' */
+  /** 分配时间（主归属），未分配为 '-' */
   allocated: string;
-  /** 所属组织 id，未分配为 '' */
+  /** 主归属组织 id，未分配为 '' */
   orgId: string;
-  /** 所属组织名称，未分配为 '-' */
+  /** 主归属组织名称，未分配为 '-' */
   orgName: string;
+  /** 全部归属组织 id，未分配为 [] */
+  orgIds: string[];
+  /** 全部归属组织名称，未分配为 [] */
+  orgNames: string[];
 }
 
 /** 深度优先展开的组织选项（含根） */
@@ -127,14 +134,21 @@ export function findParent(
 export const ownerUser = (node: OrgNode): OrgUser | undefined =>
   findUser(node.leaderId) ?? findUser(node.creatorId) ?? findUser(CURRENT_USER_ID);
 
-/** 设备所属组织：深度优先找到的第一个 devices 含该 id 的节点 */
+/** 设备的全部所属组织：深度优先收集所有 devices 含该 id 的节点（多归属） */
+export function deviceOwners(tree: OrgNode[], deviceId: string): OrgNode[] {
+  const out: OrgNode[] = [];
+  const walk = (nodes: OrgNode[]) =>
+    nodes.forEach((n) => {
+      if (n.devices.includes(deviceId)) out.push(n);
+      walk(n.children);
+    });
+  walk(tree);
+  return out;
+}
+
+/** 设备主归属组织：多归属时取深度优先第一个（兼容单值展示与旧判断） */
 export function deviceOwner(tree: OrgNode[], deviceId: string): OrgNode | null {
-  for (const n of tree) {
-    if (n.devices.includes(deviceId)) return n;
-    const found = deviceOwner(n.children, deviceId);
-    if (found) return found;
-  }
-  return null;
+  return deviceOwners(tree, deviceId)[0] ?? null;
 }
 
 export function orgOptions(tree: OrgNode[]): OrgOption[] {
@@ -157,12 +171,15 @@ export function memberRows(node: OrgNode): MemberRow[] {
 }
 
 const toDeviceRow = (tree: OrgNode[], d: OrgDevice): DeviceRow => {
-  const owner = deviceOwner(tree, d.id);
+  const owners = deviceOwners(tree, d.id);
+  const first = owners[0];
   return {
     ...d,
-    allocated: owner ? (owner.deviceDates[d.id] ?? '-') : '-',
-    orgId: owner ? owner.id : '',
-    orgName: owner ? owner.name : '-',
+    allocated: first ? (first.deviceDates[d.id] ?? '-') : '-',
+    orgId: first ? first.id : '',
+    orgName: first ? first.name : '-',
+    orgIds: owners.map((n) => n.id),
+    orgNames: owners.map((n) => n.name),
   };
 };
 
@@ -181,9 +198,9 @@ export function deviceRows(tree: OrgNode[], node: OrgNode): DeviceRow[] {
 export const allDeviceRows = (tree: OrgNode[]): DeviceRow[] =>
   ORG_DEVICES.map((d) => toDeviceRow(tree, d));
 
-/** 子组织「分配设备」候选：未分配给任何组织的设备 */
+/** 子组织「分配设备」候选：未分配给任何组织的设备（多归属下即没有任何归属） */
 export const unassignedDevices = (tree: OrgNode[]): OrgDevice[] =>
-  ORG_DEVICES.filter((d) => !deviceOwner(tree, d.id));
+  ORG_DEVICES.filter((d) => deviceOwners(tree, d.id).length === 0);
 
 /** 删除前的拦截，按顺序命中一条即返回提示文案 */
 export function deleteBlockReason(node: OrgNode): string | null {
@@ -275,14 +292,12 @@ const mustFind = (tree: OrgNode[], id: string) => {
   return n;
 };
 
-/** 已属于其他组织的设备先从原组织移除（含日期），再加入目标；日期一律刷新为今天 */
-function assignTo(tree: OrgNode[], node: OrgNode, ids: string[]) {
+/**
+ * 多归属：把设备加入目标组织，**不清除**它在其他组织的归属；已存在则只刷新日期。
+ * 因此「分配」= 增加归属，「取消分配」= 移除归属，两者互为逆操作（原「转移」语义取消）。
+ */
+function assignTo(node: OrgNode, ids: string[]) {
   ids.forEach((id) => {
-    const owner = deviceOwner(tree, id);
-    if (owner && owner.id !== node.id) {
-      owner.devices = owner.devices.filter((x) => x !== id);
-      delete owner.deviceDates[id];
-    }
     if (!node.devices.includes(id)) node.devices.push(id);
     node.deviceDates[id] = today();
   });
@@ -344,18 +359,30 @@ export function removeMembers(orgId: string, userIds: string[]) {
   });
 }
 
-export function assignDevices(orgId: string, deviceIds: string[]) {
-  return mutate((tree) => assignTo(tree, mustFind(tree, orgId), deviceIds));
+/**
+ * 分配到多个组织：同一批设备同时挂到每个目标组织（多归属，不清除其他归属）。
+ * 单选场景传一个 id 即可，行为与之前「分配到目标组织」一致，只是不再转移。
+ */
+export function assignDevices(orgIds: string[], deviceIds: string[]) {
+  return mutate((tree) => {
+    orgIds.forEach((orgId) => assignTo(mustFind(tree, orgId), deviceIds));
+  });
 }
 
-/** 取消分配：从设备实际所属组织移除（根视图同样按实际所属） */
-export function unassignDevices(deviceIds: string[]) {
+/**
+ * 取消分配：
+ * - 不传 orgId：从设备的**全部**所属组织移除（彻底取消，用于根组织全局视图）
+ * - 传 orgId：只从该组织移除，保留设备在其他组织的归属（用于子组织视图内取消）
+ */
+export function unassignDevices(deviceIds: string[], orgId?: string) {
   return mutate((tree) => {
     deviceIds.forEach((id) => {
-      const owner = deviceOwner(tree, id);
-      if (!owner) return;
-      owner.devices = owner.devices.filter((x) => x !== id);
-      delete owner.deviceDates[id];
+      const owners = orgId ? [mustFind(tree, orgId)] : deviceOwners(tree, id);
+      owners.forEach((owner) => {
+        if (!owner?.devices.includes(id)) return;
+        owner.devices = owner.devices.filter((x) => x !== id);
+        delete owner.deviceDates[id];
+      });
     });
   });
 }
@@ -369,7 +396,7 @@ export function importDevices(rows: ImportRow[]) {
       const hostId = orgOptions(tree).find((o) => o.name === r.orgName)?.id;
       const host = hostId ? findNode(tree, hostId) : null;
       if (!device || !host) return;
-      assignTo(tree, host, [device.id]);
+      assignTo(host, [device.id]);
       done++;
     });
     return done;

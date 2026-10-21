@@ -42,6 +42,8 @@
   cursor: pointer;
   white-space: nowrap;
   color: var(--color-text);
+  /* 侧栏菜单默认字重 500（常规态与选中态一致） */
+  font-weight: 500;
   transition:
     background 0.15s,
     color 0.15s;
@@ -149,6 +151,7 @@
   padding: 0 16px 0 52px;
   font-size: 14px;
   color: var(--color-text-2);
+  font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
   position: relative;
@@ -194,6 +197,7 @@
 .flyItem {
   padding: 9px 18px;
   font-size: 13px;
+  font-weight: 500;
   cursor: pointer;
   white-space: nowrap;
 }

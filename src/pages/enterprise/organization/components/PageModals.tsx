@@ -33,8 +33,8 @@ interface Props {
   onClose: () => void;
   onSaveOrg: (mode: 'add' | 'edit', id: string, values: OrgFormValues) => void;
   onAddMembers: (userIds: string[]) => void;
-  /** 分配设备并给出提示（文案由各入口决定） */
-  onAssign: (orgId: string, deviceIds: string[], toast: string) => void;
+  /** 分配设备并给出提示（文案由各入口决定）；多归属模型下可一次分配到多个组织 */
+  onAssign: (orgIds: string[], deviceIds: string[], toast: string) => void;
   onImport: (rows: ImportRow[]) => void;
 }
 
@@ -69,7 +69,7 @@ export default function PageModals({ modal, tree, node, onClose, ...on }: Props)
         <AssignDeviceModal
           tree={tree}
           onCancel={onClose}
-          onOk={(ids) => on.onAssign(node.id, ids, '设备分配成功')}
+          onOk={(ids) => on.onAssign([node.id], ids, '设备分配成功')}
         />
       );
     case 'pick-org':
@@ -78,7 +78,14 @@ export default function PageModals({ modal, tree, node, onClose, ...on }: Props)
           tree={tree}
           onCancel={onClose}
           // 修正原型缺陷：原型此路径只改内存、未写 localStorage，刷新后丢失；这里与其他分配路径一样保存
-          onOk={(orgId) => on.onAssign(orgId, modal.deviceIds, `设备已分配到“${orgName(orgId)}”`)}
+          // 多选后设备同时挂到所选的每个组织（多归属，不清除已有归属）
+          onOk={(orgIds) =>
+            on.onAssign(
+              orgIds,
+              modal.deviceIds,
+              `设备已分配到“${orgIds.map((id) => orgName(id) ?? id).join('、')}”`,
+            )
+          }
         />
       );
     case 'batch-assign':
@@ -87,7 +94,7 @@ export default function PageModals({ modal, tree, node, onClose, ...on }: Props)
           tree={tree}
           onCancel={onClose}
           onOk={(orgId, ids) =>
-            on.onAssign(orgId, ids, `已为「${orgName(orgId)}」分配 ${ids.length} 台设备`)
+            on.onAssign([orgId], ids, `已为「${orgName(orgId)}」分配 ${ids.length} 台设备`)
           }
         />
       );

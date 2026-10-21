@@ -6,7 +6,7 @@ import {
   createOrganization,
   deleteBlockReason,
   deleteOrganization,
-  deviceOwner,
+  deviceOwners,
   deviceRows,
   findDevice,
   findNode,
@@ -143,10 +143,12 @@ export default function Organization() {
 
   /* ---------- 设备 ---------- */
   const confirmRemoveDevices = (ids: string[], batch = false) => {
-    // 根组织为全局视图：只处理已有所属组织的设备，从设备实际所属组织移除
-    const targets = ids.filter((id) => !!deviceOwner(tree, id));
+    // 多归属：子组织视图只取消本组织下的归属（其他组织的归属保留）；根视图取消全部归属
+    const targets = node.root
+      ? ids.filter((id) => deviceOwners(tree, id).length > 0)
+      : ids.filter((id) => node.devices.includes(id));
     if (!targets.length) {
-      err('所选设备暂未分配组织');
+      err(node.root ? '所选设备暂未分配组织' : '所选设备不属于当前组织');
       return;
     }
     const isBatch = batch || targets.length > 1;
@@ -157,16 +159,16 @@ export default function Organization() {
         : `确认取消设备“${findDevice(targets[0])?.code ?? ''}”的分配吗？`,
       okText: isBatch ? '批量取消分配' : '取消分配',
       onOk: async () => {
-        const { tree: next } = await unassignDevices(targets);
+        const { tree: next } = await unassignDevices(targets, node.root ? undefined : node.id);
         setTree(next);
         setDeviceSel(new Set());
-        ok('已取消设备分配');
+        ok(node.root ? '已取消设备分配' : `已从「${node.name}」取消设备分配`);
       },
     });
   };
 
-  const assignAndClose = async (orgId: string, ids: string[], text: string) => {
-    const { tree: next } = await assignDevices(orgId, ids);
+  const assignAndClose = async (orgIds: string[], ids: string[], text: string) => {
+    const { tree: next } = await assignDevices(orgIds, ids);
     setTree(next);
     close();
     ok(text);

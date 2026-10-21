@@ -128,9 +128,7 @@ export default function PolicyUpdateModal() {
         <div className={hasMore ? `${styles.dialog} ${styles.hasMore}` : styles.dialog}>
           <div className={styles.head}>
             <h3>更新提示</h3>
-            <div className={styles.sub}>
-              版本 v{policy.version} · {policy.date} 生效
-            </div>
+            <div className={styles.sub}>{policy.date} 生效</div>
           </div>
 
           <div className={styles.body} ref={bodyRef} onScroll={syncFade}>

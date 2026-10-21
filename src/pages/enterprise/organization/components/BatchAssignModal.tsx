@@ -41,7 +41,14 @@ const ORG_COLUMNS: TableColumnsType<OrgRow> = [
 const DEVICE_COLUMNS: TableColumnsType<DeviceRow> = [
   { title: '设备编号', dataIndex: 'code', render: (v: string) => <span title={v}>{v}</span> },
   { title: '设备类型', dataIndex: 'model' },
-  { title: '所属组织', dataIndex: 'orgName', render: (v: string) => <span title={v}>{v}</span> },
+  {
+    title: '所属组织',
+    dataIndex: 'orgName',
+    render: (_v: string, d) => {
+      const text = d.orgNames.length ? d.orgNames.join('、') : '-';
+      return <span title={text}>{text}</span>;
+    },
+  },
 ];
 
 const Steps = ({ step }: { step: 1 | 2 }) => (
@@ -156,7 +163,7 @@ export default function BatchAssignModal({ tree, onCancel, onOk }: Props) {
       ) : (
         <>
           <h4 className={styles.batchTitle}>选择设备</h4>
-          <p className={styles.batchNote}>已分配的设备将转移至所选组织。</p>
+          <p className={styles.batchNote}>所选设备将新增到目标组织，原有归属保留。</p>
           <SearchBox
             placeholder="搜索设备编号或类型"
             value={deviceInput}

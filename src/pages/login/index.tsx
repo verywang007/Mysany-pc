@@ -106,13 +106,13 @@ export default function Login() {
 
   const openDoc = (name: string) => message.info(t.openDoc + name);
 
-  const agreeLine = (checked: boolean, onChange: (v: boolean) => void, docName: string) => (
+  const agreeLine = (checked: boolean, onChange: (v: boolean) => void, prefix: string, docName: string) => (
     <Checkbox
       className={styles.agreeLine}
       checked={checked}
       onChange={(e) => onChange(e.target.checked)}
     >
-      {t.agree}
+      {prefix}
       <span
         className={styles.link}
         onClick={(e) => {
@@ -233,8 +233,8 @@ export default function Login() {
 
             {/* 两行协议各自独立勾选；顺序：隐私协议在上 */}
             <div className={styles.agreements}>
-              {agreeLine(agreePrivacy, setAgreePrivacy, t.privacyPolicy)}
-              {agreeLine(agreeService, setAgreeService, t.serviceAgreement)}
+              {agreeLine(agreePrivacy, setAgreePrivacy, t.agreePrivacy, t.privacyPolicy)}
+              {agreeLine(agreeService, setAgreeService, t.agreeService, t.serviceAgreement)}
             </div>
 
             <Button

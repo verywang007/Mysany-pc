@@ -72,7 +72,11 @@ export function deviceColumns(
       title: '所属组织',
       dataIndex: 'orgName',
       width: '23%',
-      render: (v: string) => <span title={v}>{v}</span>,
+      // 多归属：一台设备可同时属于多个组织，用「、」连接全部归属
+      render: (_v: string, d) => {
+        const text = d.orgNames.length ? d.orgNames.join('、') : '-';
+        return <span title={text}>{text}</span>;
+      },
     },
     {
       title: '操作',

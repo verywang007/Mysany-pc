@@ -42,10 +42,10 @@ export function strongPassword(v: string): boolean {
 export const PASSWORD_RULE_TEXT = '密码需为6-32位，并包含至少3类字符';
 export const PASSWORD_MISMATCH_TEXT = '两次输入的密码不一致';
 
-/** 用户导入模板（原型如此：无 BOM、无示例行） */
+/** 用户导入模板（原型如此：无 BOM、无示例行）；第 5 列为「用户编号」 */
 export const USER_TEMPLATE = {
   fileName: '用户导入模板.csv',
-  content: '姓名,国家区号,手机号,邮箱,所属组织,角色\n',
+  content: '姓名,国家区号,手机号,邮箱,用户编号,角色\n',
 };
 
 /** 设备分配导入模板（.xlsx，两个 sheet，均附示例行） */

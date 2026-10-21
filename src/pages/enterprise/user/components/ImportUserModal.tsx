@@ -21,10 +21,11 @@ type Row = User & { line: number };
 
 const columns: TableProps<Row>['columns'] = [
   { title: '行号', dataIndex: 'line' },
-  // 「用户名」「姓名」两列都显示 name；组织、角色只显示第一个（原型如此）
+  // 「用户名」「姓名」两列都显示 name；角色只显示第一个（原型如此）
   { title: '用户名', dataIndex: 'name', key: 'username' },
   { title: '姓名', dataIndex: 'name' },
-  { title: '所属组织', dataIndex: 'orgs', render: (v: string[]) => v[0] },
+  // 与导入模板第 5 列对应：用户编号取用户 id
+  { title: '用户编号', dataIndex: 'id' },
   { title: '角色', dataIndex: 'roles', render: (v: string[]) => v[0] },
   { title: '状态', key: 'status', render: () => <StatusTag status="accepted" text="成功" /> },
 ];

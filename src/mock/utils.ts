@@ -59,3 +59,7 @@ export function expand<T>(
   }
   return out;
 }
+
+/** 相对今天的时间：daysAgo(1, '17:13') → 昨天 17:13，YYYY-MM-DD HH:mm；用于需要演示「今天 / 昨日」的数据 */
+export const daysAgo = (days: number, hm: string) =>
+  `${dayjs().subtract(days, 'day').format('YYYY-MM-DD')} ${hm}`;

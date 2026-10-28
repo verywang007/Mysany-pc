@@ -1,0 +1,324 @@
+/* 知识详情抽屉，参照测试环境：左侧预览 + 右侧 400px 信息栏 */
+.drawer :global(.ant-drawer-header) {
+  padding: 12px 24px;
+}
+
+.drawer :global(.ant-drawer-header-title) {
+  flex-direction: row-reverse;
+}
+
+.drawer :global(.ant-drawer-title) {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.drawer :global(.ant-drawer-body) {
+  padding: 0;
+  overflow: hidden;
+}
+
+.detail {
+  display: flex;
+  height: 100%;
+}
+
+.preview {
+  flex: 1 1 auto;
+  min-width: 0;
+  background: var(--knowledge-preview-bg);
+  padding: 32px;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.aside {
+  width: 400px;
+  flex: 0 0 auto;
+  padding: 20px 24px 32px;
+  overflow-y: auto;
+  border-left: 1px solid var(--color-line);
+}
+
+.h3 {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.intro {
+  display: flex;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 6px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.intro dl {
+  margin: 0;
+  min-width: 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+
+.intro dl > div {
+  display: flex;
+  margin-bottom: 8px;
+}
+
+.intro dt {
+  color: var(--color-text-3);
+}
+
+.intro dd {
+  margin: 0;
+  color: var(--color-text-2);
+}
+
+.intro p {
+  margin: 0;
+  color: var(--color-text-2);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.like {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 14px;
+  border: 1px solid var(--color-line-2);
+  border-radius: 15px;
+  background: #fff;
+  color: var(--color-text-2);
+  cursor: pointer;
+}
+
+.like:hover,
+.liked {
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+
+.download:global(.ant-btn-primary) {
+  background: var(--knowledge-download);
+  border-radius: 2px;
+}
+
+/* ---------- 预览：文档 ---------- */
+.doc {
+  width: 100%;
+  max-width: 820px;
+  background: #fff;
+  box-shadow: var(--shadow-popup);
+  align-self: flex-start;
+}
+
+.docBar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 16px;
+  background: var(--color-bg-soft);
+  font-size: 13px;
+  color: var(--color-text-2);
+}
+
+.docBar span {
+  margin-left: auto;
+  color: var(--color-text-4);
+}
+
+.docPage {
+  padding: 48px 56px 64px;
+  min-height: 900px;
+}
+
+.docPage h2 {
+  margin: 0 0 16px;
+  font-size: 22px;
+  text-align: center;
+}
+
+.docPage p {
+  margin: 0 0 24px;
+  color: var(--color-text-3);
+  text-align: center;
+}
+
+.docPage i {
+  display: block;
+  height: 10px;
+  margin: 14px 0;
+  border-radius: 5px;
+  background: var(--color-bg-soft);
+}
+
+/* ---------- 预览：图片 ---------- */
+.viewer {
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  box-shadow: var(--shadow-popup);
+}
+
+.stage {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 520px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-card);
+}
+
+.picture {
+  width: 70%;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--color-text-3);
+  transition: transform 0.2s;
+}
+
+.origin {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 10px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: 13px;
+}
+
+.tools {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  padding: 12px;
+  font-size: 18px;
+  border-top: 1px solid var(--color-line);
+}
+
+.tools :global(.anticon) {
+  cursor: pointer;
+}
+
+.tools :global(.anticon:hover) {
+  color: var(--color-primary);
+}
+
+/* ---------- 预览：视频 / 音频 / 课程 ---------- */
+.player,
+.course {
+  width: 100%;
+  max-width: 900px;
+  align-self: flex-start;
+}
+
+.screen {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--knowledge-preview-dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.audio .screen {
+  aspect-ratio: 16 / 7;
+}
+
+.play {
+  font-size: 64px;
+  color: rgba(255, 255, 255, 0.85);
+  cursor: pointer;
+}
+
+.audio .play {
+  color: var(--knowledge-audio);
+}
+
+.fileName {
+  position: absolute;
+  left: 16px;
+  top: 12px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+}
+
+.audio .fileName {
+  color: var(--color-text-2);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 40px;
+  padding: 0 16px;
+  background: var(--knowledge-preview-dark);
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+}
+
+.progress {
+  flex: 1 1 auto;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.chapters {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+}
+
+.chapters li {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-line);
+  font-size: 14px;
+  color: var(--color-text-2);
+  cursor: pointer;
+}
+
+.chapters .chaptersHead {
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: default;
+}
+
+.chapters .chapterOn {
+  color: var(--color-primary);
+  background: var(--color-primary-bg-2);
+}

@@ -1,6 +1,7 @@
 import type { ThemeConfig } from 'antd';
 import { organizationColors } from './pages/organization';
 import { roleColors } from './pages/role';
+import { knowledgeColors } from './pages/knowledge';
 import { tenantColors } from './pages/tenant';
 import { userColors } from './pages/user';
 
@@ -166,6 +167,8 @@ export const pageColors: Record<string, Record<string, string>> = {
   organization: organizationColors,
   user: userColors,
   role: roleColors,
+  /** 知识库（取自测试环境 培训中心 → 知识库） */
+  knowledge: knowledgeColors,
   /** Cookies 偏好中心（取自原型 cookies.css） */
   cookies: {
     switchOff: '#d5d9e0',

@@ -15,5 +15,6 @@ export const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
   '/enterprise/organization': lazy(() => import('@/pages/enterprise/organization')),
   '/enterprise/user': lazy(() => import('@/pages/enterprise/user')),
   '/enterprise/role': lazy(() => import('@/pages/enterprise/role')),
+  '/training/knowledge': lazy(() => import('@/pages/training/knowledge')),
   '/scenes': lazy(() => import('@/pages/scenes')),
 };

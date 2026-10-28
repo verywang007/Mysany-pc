@@ -43,7 +43,14 @@ export const MENU: MenuNode[] = [
     key: 'training',
     label: '培训中心',
     icon: 'training',
-    children: [{ key: 'training-knowledge', label: '知识库' }],
+    children: [
+      {
+        key: 'training-knowledge',
+        label: '知识库',
+        path: '/training/knowledge',
+        systemPath: '/crane-web/training-center/knowledge-base',
+      },
+    ],
   },
   {
     key: 'screen',

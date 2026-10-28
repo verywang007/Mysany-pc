@@ -1,0 +1,145 @@
+/* 评论区，参照测试环境知识详情右栏 */
+.wrap {
+  margin-top: 8px;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.post {
+  display: flex;
+  justify-content: flex-end;
+  margin: 12px 0 20px;
+}
+
+.tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--color-text-3);
+}
+
+.tabs span {
+  padding-bottom: 6px;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+}
+
+.tabs .tabOn {
+  color: var(--color-text);
+  font-weight: 600;
+  border-bottom-color: var(--color-text);
+}
+
+.thread {
+  padding: 4px 0;
+}
+
+.item {
+  display: flex;
+  gap: 12px;
+  padding: 10px 8px;
+  margin: 0 -8px;
+  border-radius: 6px;
+}
+
+.reply {
+  padding-left: 56px;
+}
+
+/* 消息中心跳转定位：高亮后淡出 */
+.hit {
+  animation: hit 2.7s ease-out;
+}
+
+@keyframes hit {
+  0%,
+  50% {
+    background: var(--knowledge-highlight);
+  }
+  100% {
+    background: transparent;
+  }
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+  background: var(--knowledge-avatar);
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: 8px;
+  font-size: 14px;
+}
+
+.head b {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.at {
+  color: var(--color-text-3);
+}
+
+.head time {
+  font-size: 13px;
+  color: var(--color-text-4);
+}
+
+.text {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--color-text-2);
+  word-break: break-all;
+}
+
+.replyBtn {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+
+.replyBox {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.more {
+  margin: 4px 0 4px 48px;
+  padding: 2px 12px;
+  font-size: 13px;
+  color: var(--color-primary);
+  background: #fff;
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.more:hover {
+  background: var(--color-primary-bg-2);
+}

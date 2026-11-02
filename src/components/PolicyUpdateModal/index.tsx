@@ -62,10 +62,10 @@ export default function PolicyUpdateModal() {
       setShaking(false);
       // 下一帧重新加上，连续点击可重复抖动
       requestAnimationFrame(() => setShaking(true));
-      const missing = [!agreed.service && '用户服务协议', !agreed.privacy && '隐私协议'].filter(
+      const missing = [!agreed.privacy && '《隐私政策》', !agreed.service && '《用户协议》'].filter(
         Boolean,
       );
-      message.info(`请先阅读并同意${missing.join('和')}`);
+      message.info(`请先阅读并勾选${missing.join('和')}`);
       return;
     }
     rememberAgreedVersion(policy.version);
@@ -94,13 +94,14 @@ export default function PolicyUpdateModal() {
     </span>
   );
 
-  const agreeRow = (key: 'service' | 'privacy', name: string) => (
+  const agreeRow = (key: 'service' | 'privacy', verb: string, name: string) => (
     <Checkbox
       className={styles.row}
       checked={agreed[key]}
       onChange={(e) => setAgreed((a) => ({ ...a, [key]: e.target.checked }))}
     >
-      同意{docLink(key, name, styles.u)}
+      {verb}
+      {docLink(key, name, styles.u)}
     </Checkbox>
   );
 
@@ -155,13 +156,13 @@ export default function PolicyUpdateModal() {
           </div>
           <div className={styles.fade} aria-hidden="true" />
 
-          {/* 顺序：用户服务协议在上（与登录页相反，沿用原型） */}
+          {/* 顺序与文案同登录页：隐私政策在上 */}
           <div
             className={shaking ? `${styles.agree} ${styles.shake}` : styles.agree}
             onAnimationEnd={() => setShaking(false)}
           >
-            {agreeRow('service', '用户服务协议')}
-            {agreeRow('privacy', '隐私协议')}
+            {agreeRow('privacy', '已阅读并知悉', '《隐私政策》')}
+            {agreeRow('service', '已阅读并同意', '《用户协议》')}
           </div>
 
           <div className={styles.foot}>

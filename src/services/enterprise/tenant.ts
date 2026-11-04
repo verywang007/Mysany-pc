@@ -123,6 +123,11 @@ export async function loadTenantDemo(): Promise<TenantInfo> {
 
 export const listTenantUsers = (): TenantUser[] => TENANT_USERS;
 
+/** 当前租户类型（如 `企业客户`、`代理商`）；用户管理等页面按此区分登录账户相关文案 */
+export function getTenantType(): string {
+  return data().tenant.tenantType || '';
+}
+
 /** 找不到时回退为第一个用户（5656），与原型一致 */
 export const findTenantUser = (id: string): TenantUser =>
   TENANT_USERS.find((u) => u.id === id) ?? TENANT_USERS[0];

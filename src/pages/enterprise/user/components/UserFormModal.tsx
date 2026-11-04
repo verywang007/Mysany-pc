@@ -7,7 +7,9 @@ import {
   getRoles,
   updateUser,
   type User,
+  type UserInput,
 } from '@/services/enterprise/user';
+import { getTenantType } from '@/services/enterprise/tenant';
 import {
   EMAIL_PATTERN,
   NAME_FORBIDDEN,
@@ -30,15 +32,32 @@ interface Props {
 
 type ErrorKey = 'name' | 'contact' | 'email' | 'orgs' | 'roles' | 'password' | 'confirm';
 
+/** 登录账户提示文案：代理商租户的用户名（姓名）也属于登录账户 */
+const CONTACT_HELP = {
+  enterprise: '手机号、邮箱为登录账户，至少填写一项',
+  agent: '手机号、邮箱、用户名为登录账户，至少填写一项',
+} as const;
+
 const toOptions = (list: string[]) => list.map((v) => ({ value: v, label: v }));
 
 /**
- * 新增 / 编辑用户。点「保存」时一次性校验全部字段；设备范围类型由角色推导（见 services）。
+ * 新增 / 编辑用户。点「确定」时一次性校验全部字段；设备范围类型由角色推导（见 services）。
  * 业务职责控件为多选，但只保存第一个选中值（原型如此）。
+ * 登录账户（手机号、邮箱、用户名）一经设置不可修改：
+ * - 新增：点「确定」先弹提示确认；
+ * - 编辑：已填写过的字段锁定（disabled），仅空白字段可补填，补填后点「确定」弹提示确认。
+ * 手机号下方的常驻提示文案按租户类型区分（企业客户 / 代理商，见 getTenantType）。
  */
 export default function UserFormModal({ user, onClose, onSaved }: Props) {
-  const { message } = App.useApp();
+  const { message, modal } = App.useApp();
   const isAdd = !user;
+  // 代理商租户：联系方式 + 用户名共同构成登录账户（仅影响提示文案）
+  const isAgent = getTenantType().includes('代理商');
+  const contactHelp = isAgent ? CONTACT_HELP.agent : CONTACT_HELP.enterprise;
+  // 登录账户字段锁定：编辑时已填写过的不可再修改
+  const nameLocked = !!user?.name;
+  const phoneLocked = !!user?.phone;
+  const emailLocked = !!user?.email;
   const [name, setName] = useState(user?.name ?? '');
   // 编辑时区号为空则显示 +86（原型如此，保存后会写入 +86）
   const [prefix, setPrefix] = useState(user?.prefix || '+86');
@@ -52,6 +71,14 @@ export default function UserFormModal({ user, onClose, onSaved }: Props) {
   const [roles, setRoles] = useState<string[]>(user?.roles ?? []);
   const [errors, setErrors] = useState<Partial<Record<ErrorKey, string>>>({});
 
+  const submit = async (input: UserInput) => {
+    if (isAdd) await createUser(input, force);
+    else await updateUser(user.id, input);
+    onClose();
+    onSaved();
+    message.success(isAdd ? '用户新增成功' : '用户信息已保存');
+  };
+
   const save = async () => {
     const n = name.trim();
     const p = phone.trim();
@@ -59,7 +86,7 @@ export default function UserFormModal({ user, onClose, onSaved }: Props) {
     const next: Partial<Record<ErrorKey, string>> = {};
     if (!n) next.name = '请输入姓名';
     else if (NAME_FORBIDDEN.test(n)) next.name = '姓名不能包含特殊字符';
-    if (!p && !e) next.contact = '手机号、邮箱至少填写一项';
+    if (!p && !e) next.contact = contactHelp;
     if (e && !EMAIL_PATTERN.test(e)) next.email = '请输入有效邮箱';
     if (!orgs.length) next.orgs = '请选择所属组织';
     if (!roles.length) next.roles = '请选择角色';
@@ -70,12 +97,21 @@ export default function UserFormModal({ user, onClose, onSaved }: Props) {
     setErrors(next);
     if (Object.keys(next).length) return;
 
-    const input = { name: n, prefix, phone: p, email: e, orgs, roles, duties };
-    if (isAdd) await createUser(input, force);
-    else await updateUser(user.id, input);
-    onClose();
-    onSaved();
-    message.success(isAdd ? '用户新增成功' : '用户信息已保存');
+    const input: UserInput = { name: n, prefix, phone: p, email: e, orgs, roles, duties };
+    // 登录账户一经设置不可修改：新增必先确认；编辑仅当补填了原本为空的手机号 / 邮箱时确认
+    // （姓名在编辑时恒已填写并被锁定，无需判断）
+    if (isAdd || (!!user && ((!!p && !user.phone) || (!!e && !user.email)))) {
+      modal.confirm({
+        title: '提示',
+        content: '手机号、邮箱、用户名作为登录账户，确定后不可修改。',
+        okText: '确定',
+        cancelText: '取消',
+        icon: null,
+        onOk: () => submit(input),
+      });
+      return;
+    }
+    await submit(input);
   };
 
   // 修正原型缺陷：原型定义了 .bad 红框样式但从未使用，校验失败时字段不变红
@@ -90,7 +126,7 @@ export default function UserFormModal({ user, onClose, onSaved }: Props) {
         <>
           <Button onClick={onClose}>取消</Button>
           <Button type="primary" onClick={save}>
-            保存
+            确定
           </Button>
         </>
       }
@@ -101,30 +137,42 @@ export default function UserFormModal({ user, onClose, onSaved }: Props) {
             autoFocus
             placeholder="请输入姓名"
             value={name}
+            disabled={nameLocked}
             status={status('name')}
             onChange={(ev) => setName(ev.target.value)}
           />
         </Field>
-        <Field label="手机号" help="手机号、邮箱至少填写一项" error={errors.contact}>
+        <Field
+          label="手机号"
+          help={phoneLocked ? '已设置为登录账户，不可修改' : contactHelp}
+          error={errors.contact}
+        >
           <Space.Compact className={styles.phone}>
             <Select
               value={prefix}
               options={toOptions(PHONE_PREFIXES)}
               onChange={setPrefix}
+              disabled={phoneLocked}
               status={status('contact')}
             />
             <Input
               placeholder="请输入手机号"
               value={phone}
+              disabled={phoneLocked}
               status={status('contact')}
               onChange={(ev) => setPhone(ev.target.value)}
             />
           </Space.Compact>
         </Field>
-        <Field label="邮箱" error={errors.email}>
+        <Field
+          label="邮箱"
+          help={emailLocked ? '已设置为登录账户，不可修改' : undefined}
+          error={errors.email}
+        >
           <Input
             placeholder="请输入邮箱"
             value={email}
+            disabled={emailLocked}
             status={status('email')}
             onChange={(ev) => setEmail(ev.target.value)}
           />

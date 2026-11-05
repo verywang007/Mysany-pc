@@ -4,6 +4,12 @@ import { App, Button, Checkbox, Dropdown, Input } from 'antd';
 import { CaretDownFilled, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
 import logo from '@/assets/icon-mysanyLogo.svg';
 import qrCorner from '@/assets/login-qr-corner.png';
+import DocModal from '@/components/DocModal';
+import {
+  getSettingsDoc,
+  getThirdPartySdkDoc,
+  type SettingsDocKey,
+} from '@/services/common/agreements';
 import { pageTitle } from '@/config/app';
 import { HOME_PATH } from '@/router/resolve';
 import { STORAGE_KEYS, readText, writeText } from '@/utils/storage';
@@ -104,9 +110,15 @@ export default function Login() {
     navigate(HOME_PATH);
   };
 
-  const openDoc = (name: string) => message.info(t.openDoc + name);
+  const [doc, setDoc] = useState<SettingsDocKey | null>(null);
 
-  const agreeLine = (checked: boolean, onChange: (v: boolean) => void, prefix: string, docName: string) => (
+  const agreeLine = (
+    checked: boolean,
+    onChange: (v: boolean) => void,
+    prefix: string,
+    docName: string,
+    key: SettingsDocKey,
+  ) => (
     <Checkbox
       className={styles.agreeLine}
       checked={checked}
@@ -119,7 +131,7 @@ export default function Login() {
           // 点协议名只打开协议，不切换勾选
           e.preventDefault();
           e.stopPropagation();
-          openDoc(docName);
+          setDoc(key);
         }}
       >
         {docName}
@@ -233,8 +245,14 @@ export default function Login() {
 
             {/* 两行协议各自独立勾选；顺序：隐私协议在上 */}
             <div className={styles.agreements}>
-              {agreeLine(agreePrivacy, setAgreePrivacy, t.agreePrivacy, t.privacyPolicy)}
-              {agreeLine(agreeService, setAgreeService, t.agreeService, t.serviceAgreement)}
+              {agreeLine(agreePrivacy, setAgreePrivacy, t.agreePrivacy, t.privacyPolicy, 'privacy')}
+              {agreeLine(
+                agreeService,
+                setAgreeService,
+                t.agreeService,
+                t.serviceAgreement,
+                'service',
+              )}
             </div>
 
             <Button
@@ -255,6 +273,12 @@ export default function Login() {
           </div>
         </div>
       </div>
+      <DocModal
+        doc={doc ? getSettingsDoc(doc) : null}
+        relatedDoc={doc === 'privacy' ? getThirdPartySdkDoc() : undefined}
+        backText="返回"
+        onBack={() => setDoc(null)}
+      />
     </div>
   );
 }

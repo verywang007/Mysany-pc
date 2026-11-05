@@ -20,9 +20,9 @@ export interface CookieRow {
   /** 主机；「第一方 Cookie」同时作为分组名 */
   host: string;
   /** 持续时间 */
-  dur: string;
-  /** 第一方 / 第三者 */
-  type: string;
+  dur?: string;
+  /** 来源与存储类型 */
+  type?: string;
   desc: string;
 }
 

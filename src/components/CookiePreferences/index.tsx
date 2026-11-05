@@ -223,7 +223,6 @@ function CookieList({ category, hostsExpanded, onToggleHost, onBack }: ListProps
                     {field('主机', r.host)}
                     {field('持续时间', r.dur)}
                     {field('类型', r.type)}
-                    {field('类别', cat?.title)}
                     {field('说明', r.desc)}
                   </div>
                 ))}

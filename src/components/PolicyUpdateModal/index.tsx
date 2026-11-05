@@ -8,6 +8,7 @@ import { LOGIN_PATH } from '@/router/resolve';
 import {
   getPolicyDoc,
   getPolicyVersion,
+  getThirdPartySdkDoc,
   rememberAgreedVersion,
   type PolicyDocKey,
 } from '@/services/common/agreements';
@@ -184,6 +185,7 @@ export default function PolicyUpdateModal() {
 
       <DocModal
         doc={doc ? (getPolicyDoc(doc) ?? null) : null}
+        relatedDoc={doc === 'privacy' ? getThirdPartySdkDoc() : undefined}
         backText="返回"
         onBack={() => setDoc(null)}
         zIndex={1100}

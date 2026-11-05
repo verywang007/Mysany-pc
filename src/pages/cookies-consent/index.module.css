@@ -1,9 +1,9 @@
-/* 授权前的透明遮罩：铺满视口拦截交互，不改变页面亮度（登录窗口此时不可操作） */
+/* 半透明遮罩铺满视口，突出底部同意横幅 */
 .mask {
   position: fixed;
   inset: 0;
   z-index: 790;
-  background: transparent;
+  background: rgb(0 0 0 / 40%);
 }
 
 /* 底部同意横幅：白底、顶边线，固定在视口底部（低于 Modal / Drawer 层） */
@@ -14,9 +14,11 @@
   bottom: 0;
   z-index: 800;
   display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  padding: 16px 40px;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  min-height: 180px;
+  padding: 28px max(24px, calc((100% - 1400px) / 2));
   background: #fff;
   border-top: 1px solid var(--color-line-2);
   font-family:
@@ -40,30 +42,17 @@
 
 .desc {
   margin: 0;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   color: var(--color-text-2);
 }
 
-.policy {
-  display: inline-block;
-  margin-top: 6px;
-  font-size: 12px;
-  color: var(--color-blue);
-  cursor: pointer;
-}
-
-.policy:hover {
-  text-decoration: underline;
-}
-
-/* 右侧：两个按钮一行，「管理首选项」在下一行右对齐 */
 .actions {
   flex: 0 0 auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
+  align-items: flex-start;
+  gap: 16px;
 }
 
 .buttons {
@@ -71,21 +60,22 @@
   gap: 12px;
 }
 
-/* 截图样式：两个按钮都是蓝色实心白字 */
 .buttons :global(.ant-btn) {
   min-width: 96px;
   height: 32px;
   padding: 0 16px;
-  border: none;
+  border: 1px solid #bfbfbf;
   border-radius: 2px;
   font-size: 13px;
   box-shadow: none;
-  background: var(--color-blue);
+  background: #fff;
+  color: #000;
 }
 
 .buttons :global(.ant-btn:not(:disabled):hover) {
-  background: var(--color-blue);
-  filter: brightness(0.92);
+  background: #fff;
+  color: #000;
+  border-color: #8c8c8c;
 }
 
 .manage {
@@ -103,9 +93,11 @@
   .bar {
     flex-direction: column;
     gap: 16px;
+    padding: 24px 20px;
   }
 
-  .actions {
-    align-items: flex-start;
+  .text {
+    flex: none;
+    max-width: 100%;
   }
 }

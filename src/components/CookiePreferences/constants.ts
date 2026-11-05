@@ -24,7 +24,7 @@ export const COOKIE_CATEGORIES: CookieCategory[] = [
   {
     key: 'ckAnalytics',
     title: '性能 Cookie',
-    desc: '这类 Cookie 用于统计访问量与流量来源，帮助我们了解哪些页面最受欢迎、用户如何在站点中浏览，从而衡量并改进页面性能。所有信息都是汇总的，因此是匿名的。',
+    desc: '这类 Cookie 用于统计访问量与流量来源，帮助我们了解哪些页面最受欢迎、用户如何在站点中浏览，从而衡量并改进页面性能。统计可能使用浏览器标识以及配置上报的用户和租户标识。',
   },
   {
     key: 'ckAds',

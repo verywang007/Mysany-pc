@@ -4,7 +4,7 @@ import CookiePreferences from '@/components/CookiePreferences';
 import { PERSONAL_ADS_DESC } from '@/components/CookiePreferences/constants';
 import DocModal from '@/components/DocModal';
 import Icon from '@/components/Icon';
-import { getSettingsDoc, type SettingsDocKey } from '@/services/common/agreements';
+import { getSettingsDoc, getThirdPartySdkDoc, type SettingsDocKey } from '@/services/common/agreements';
 import {
   COOKIE_CATEGORY_TOTAL,
   enabledCookieCount,
@@ -21,7 +21,7 @@ interface Props {
 }
 
 /**
- * 设置弹窗（顶栏用户下拉 → 设置）：隐私协议、用户服务协议、Cookies 设置、个性化广告。
+ * 设置弹窗（顶栏用户下拉 → 设置）：隐私政策、用户协议、Cookies 设置、个性化广告。
  * 规格见 docs/page-specs/公共-设置弹窗.md。
  * - 打开时读取 ms_settings 生成草稿，「保存」才写入，取消 / × / 遮罩 / Esc 直接丢弃；
  * - 「查看」协议在同一弹窗层内切换为阅读页（900px），返回后草稿保留；
@@ -87,13 +87,13 @@ export default function SettingsModal({ open, onClose }: Props) {
       >
         {row(
           'shield',
-          '隐私协议',
+          '隐私政策',
           '了解我们收集哪些信息、如何使用与保护，以及你享有的权利。',
           link('查看', () => setPage('privacy')),
         )}
         {row(
           'doc',
-          '用户服务协议',
+          '用户协议',
           '了解服务范围、账号安全责任与使用规范。',
           link('查看', () => setPage('service')),
         )}
@@ -122,6 +122,7 @@ export default function SettingsModal({ open, onClose }: Props) {
 
       <DocModal
         doc={open && page !== 'main' ? getSettingsDoc(page) : null}
+        relatedDoc={open && page === 'privacy' ? getThirdPartySdkDoc() : undefined}
         backText="返回设置"
         onBack={() => setPage('main')}
         onClose={onClose}

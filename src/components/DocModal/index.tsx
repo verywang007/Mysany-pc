@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Button, Modal } from 'antd';
 import { LeftOutlined } from '@ant-design/icons';
 import type { AgreementDoc } from '@/services/common/agreements';
@@ -12,36 +13,62 @@ interface Props {
   /** × / 遮罩 / Esc；不传时与 onBack 相同 */
   onClose?: () => void;
   zIndex?: number;
+  relatedDoc?: AgreementDoc;
 }
 
 /**
  * 协议阅读大弹窗：900px，左上角返回箭头 + 标题 + ×，正文为本地示例协议 HTML。
  * 样式取自原型 app.css 的 .dlg-doc / .doc。
  */
-export default function DocModal({ doc, backText, onBack, onClose = onBack, zIndex }: Props) {
+export default function DocModal({
+  doc,
+  backText,
+  onBack,
+  onClose = onBack,
+  zIndex = 1000,
+  relatedDoc,
+}: Props) {
+  const [relatedOpen, setRelatedOpen] = useState(false);
+
   return (
-    <Modal
-      open={!!doc}
-      width={900}
-      centered
-      zIndex={zIndex}
-      className={styles.modal}
-      onCancel={onClose}
-      title={
-        <div className={styles.title}>
-          <span className={styles.back} onClick={onBack}>
-            <LeftOutlined />
-          </span>
-          {doc?.title}
-        </div>
-      }
-      footer={<Button onClick={onBack}>{backText}</Button>}
-      destroyOnHidden
-    >
-      {doc && (
-        // 正文为本地 mock 中的固定 HTML，不含用户输入
-        <div className={styles.doc} dangerouslySetInnerHTML={{ __html: doc.body }} />
+    <>
+      <Modal
+        open={!!doc}
+        width={900}
+        centered
+        zIndex={zIndex}
+        className={styles.modal}
+        onCancel={onClose}
+        keyboard={!relatedOpen}
+        title={
+          <div className={styles.title}>
+            <span className={styles.back} onClick={onBack}>
+              <LeftOutlined />
+            </span>
+            {doc?.title}
+          </div>
+        }
+        footer={<Button onClick={onBack}>{backText}</Button>}
+        destroyOnHidden
+      >
+        {doc && (
+          // 正文为本地 mock 中的固定 HTML，不含用户输入
+          <div className={styles.doc} dangerouslySetInnerHTML={{ __html: doc.body }} />
+        )}
+        {doc && relatedDoc && (
+          <Button type="link" onClick={() => setRelatedOpen(true)}>
+            《{relatedDoc.title}》
+          </Button>
+        )}
+      </Modal>
+      {relatedDoc && (
+        <DocModal
+          doc={relatedOpen ? relatedDoc : null}
+          backText="返回隐私政策"
+          onBack={() => setRelatedOpen(false)}
+          zIndex={zIndex + 10}
+        />
       )}
-    </Modal>
+    </>
   );
 }

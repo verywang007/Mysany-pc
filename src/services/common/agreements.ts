@@ -1,4 +1,9 @@
-import { POLICY_UPDATE_DOCS, POLICY_UPDATE_VERSION, SETTINGS_DOCS } from '@/mock/common/agreements';
+import {
+  POLICY_UPDATE_DOCS,
+  POLICY_UPDATE_VERSION,
+  SETTINGS_DOCS,
+  THIRD_PARTY_SDK_DOC,
+} from '@/mock/common/agreements';
 import { STORAGE_KEYS, writeText } from '@/utils/storage';
 
 export interface AgreementDoc {
@@ -24,3 +29,5 @@ export const getPolicyDoc = (key: PolicyDocKey): AgreementDoc | undefined =>
 export function rememberAgreedVersion(version: string): void {
   writeText(STORAGE_KEYS.policyAgreedVersion, version);
 }
+
+export const getThirdPartySdkDoc = (): AgreementDoc => THIRD_PARTY_SDK_DOC;

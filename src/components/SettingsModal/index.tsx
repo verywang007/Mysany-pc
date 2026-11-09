@@ -1,7 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
-import { App, Button, Modal, Switch } from 'antd';
+import { App, Button, Modal } from 'antd';
 import CookiePreferences from '@/components/CookiePreferences';
-import { PERSONAL_ADS_DESC } from '@/components/CookiePreferences/constants';
 import DocModal from '@/components/DocModal';
 import Icon from '@/components/Icon';
 import { getSettingsDoc, getThirdPartySdkDoc, type SettingsDocKey } from '@/services/common/agreements';
@@ -21,11 +20,11 @@ interface Props {
 }
 
 /**
- * 设置弹窗（顶栏用户下拉 → 设置）：隐私政策、用户协议、Cookies 设置、个性化广告。
+ * 设置弹窗（顶栏用户下拉 → 设置）：隐私政策、用户协议、Cookies 设置。
  * 规格见 docs/page-specs/公共-设置弹窗.md。
  * - 打开时读取 ms_settings 生成草稿，「保存」才写入，取消 / × / 遮罩 / Esc 直接丢弃；
  * - 「查看」协议在同一弹窗层内切换为阅读页（900px），返回后草稿保留；
- * - Cookies 抽屉里确认即写入 Cookie 四类，并同步到草稿，不会带上未保存的个性化广告。
+ * - Cookies 抽屉里确认即写入 Cookie 四类，并同步到草稿。
  */
 export default function SettingsModal({ open, onClose }: Props) {
   const { message } = App.useApp();
@@ -107,16 +106,6 @@ export default function SettingsModal({ open, onClose }: Props) {
             </div>
           </>,
           link('设置', () => setCookieOpen(true)),
-        )}
-        {row(
-          'ads',
-          '个性化广告',
-          PERSONAL_ADS_DESC,
-          <Switch
-            className={styles.switch}
-            checked={draft.personalAds}
-            onChange={(v) => setDraft((d) => ({ ...d, personalAds: v }))}
-          />,
         )}
       </Modal>
 

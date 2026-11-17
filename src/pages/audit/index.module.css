@@ -1,0 +1,122 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: calc(100vh - 110px);
+}
+.body {
+  display: flex;
+  gap: 16px;
+  flex: 1;
+  min-width: 0;
+}
+.sidebar {
+  width: 240px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 8px;
+  padding: 16px;
+}
+.heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.heading h3 {
+  margin: 0;
+}
+.updated {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-text3);
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+.category,
+.active {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  padding: 15px 12px;
+  margin: 5px 0;
+  background: transparent;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  color: var(--color-text);
+  font: inherit;
+}
+.category span:last-child,
+.active span:last-child {
+  margin-left: auto;
+  white-space: nowrap;
+}
+.active {
+  background: var(--color-primary-bg);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+.content {
+  min-width: 0;
+  flex: 1;
+  background: #fff;
+  padding: 16px;
+  border-radius: 8px;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.filters > :global(.ant-select),
+.filters > :global(.ant-input-affix-wrapper) {
+  width: 190px;
+  flex: 1 1 150px;
+}
+.filters > :global(.ant-picker) {
+  flex-basis: 265px;
+  max-width: 300px;
+}
+.secondary {
+  color: var(--color-text3);
+  font-size: 12px;
+  margin-top: 5px;
+}
+.deviceCard {
+  padding: 16px;
+  background: var(--color-bg-soft);
+  border-radius: 8px;
+  margin-bottom: 24px;
+}
+.empty {
+  text-align: center;
+  padding: 24px;
+  color: var(--color-text3);
+}
+.setting {
+  display: flex;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--color-line);
+}
+@media (max-width: 1000px) {
+  .body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: auto;
+  }
+  .category,
+  .active {
+    display: inline-flex;
+    width: auto;
+    margin-right: 8px;
+  }
+}

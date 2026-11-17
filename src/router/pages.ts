@@ -6,6 +6,8 @@ import { lazy, type ComponentType, type LazyExoticComponent } from 'react';
  * 登录页不在主布局内，单独在 main.tsx 注册。
  */
 export const PAGES: Record<string, LazyExoticComponent<ComponentType>> = {
+  '/devices': lazy(() => import('@/pages/device')),
+  '/audit/events': lazy(() => import('@/pages/audit')),
   '/workbench': lazy(() => import('@/pages/workbench')),
   '/policy-update': lazy(() => import('@/pages/policy-update')),
   '/lift-planning': lazy(() => import('@/pages/lift-planning')),

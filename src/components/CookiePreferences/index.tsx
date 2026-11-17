@@ -1,7 +1,7 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { App, Button, Drawer, Switch } from 'antd';
 import { CloseOutlined, LeftOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
-import logo from '@/assets/icon-mysanyLogo.svg';
+import logo from '@/assets/sanvist-logo.png';
 import {
   listCookies,
   loadSettings,
@@ -83,7 +83,7 @@ export default function CookiePreferences({ open, onClose }: Props) {
     >
       <div className={styles.drawer}>
         <div className={styles.head}>
-          <img src={logo} alt="My SANY" />
+          <img src={logo} alt="SANVIST" />
           <span className={styles.close} title="关闭" onClick={() => onClose(false)}>
             <CloseOutlined />
           </span>

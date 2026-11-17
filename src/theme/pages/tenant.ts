@@ -41,7 +41,7 @@ export const tenantColors = {
   authCircleBg: 'rgba(225, 241, 255, .74)',
   helpIcon: '#2563eb',
   /** 链接、标签 */
-  link: '#1269e8',
+  link: '#4F89FF',
   tagBg: '#eaf4ff',
   /** 表格 */
   tableBorder: '#dfe2e7',
@@ -61,7 +61,7 @@ export const tenantColors = {
   formLabel: '#34394b',
   fieldText: '#252b3d',
   fieldBorder: '#d6dae1',
-  focusRing: 'rgba(198, 0, 11, .08)',
+  focusRing: 'rgba(79, 137, 255, .08)',
   required: '#f5222d',
   tipText: '#2c7df0',
   tipBg: '#e8f4ff',

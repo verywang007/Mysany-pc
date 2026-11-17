@@ -5,14 +5,14 @@
 export const organizationColors: Record<string, string> = {
   /** 页面底色、聚焦外发光 */
   pageBg: '#f5f6f8',
-  focusRing: '0 0 0 2px rgba(198, 0, 11, .08)',
+  focusRing: '0 0 0 2px rgba(79, 137, 255, .08)',
   scrollbar: '#cfd3db',
 
   /* 组织树 */
   searchBorder: '#d9dde4',
   treeText: '#33394d',
   treeHover: '#f5f5f5',
-  treeSelectedBg: '#fde7e8',
+  treeSelectedBg: '#EDF3FF',
   treeToggle: '#8e91a3',
   treeAction: '#50566b',
   treeActionHoverBg: 'rgba(255, 255, 255, .72)',
@@ -42,7 +42,7 @@ export const organizationColors: Record<string, string> = {
   tableHeadText: '#30364b',
   tableText: '#4f586e',
   rowHover: '#fafafa',
-  link: '#1269e8',
+  link: '#4F89FF',
   roleTagBg: '#eaf4ff',
   leader: '#739bff',
 
@@ -65,7 +65,7 @@ export const organizationColors: Record<string, string> = {
   modalTableText: '#535c72',
   modalEmpty: '#a0a5af',
   pickItemLine: '#eef0f3',
-  pickOnBg: '#fff5f5',
+  pickOnBg: '#F4F7FF',
   pickRadio: '#cfd4dd',
   rootTagBg: '#f2f3f5',
   stepText: '#9398a3',

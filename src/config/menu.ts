@@ -29,13 +29,24 @@ export const MENU: MenuNode[] = [
     path: '/workbench',
     systemPath: '/standard/workbench',
   },
-  { key: 'device', label: '设备管理', icon: 'device', systemPath: '/standard/machine/machine' },
+  {
+    key: 'device',
+    path: '/devices',
+    label: '设备管理',
+    icon: 'device',
+    systemPath: '/standard/machine/machine',
+  },
   {
     key: 'audit',
     label: '审核',
     icon: 'audit',
     children: [
-      { key: 'audit-event', label: '审核', systemPath: '/standard/audit/auditEvent' },
+      {
+        key: 'audit-event',
+        label: '审核',
+        path: '/audit/events',
+        systemPath: '/standard/audit/auditEvent',
+      },
       { key: 'audit-task', label: '审核任务' },
     ],
   },

@@ -11,13 +11,13 @@ import { userColors } from './pages/user';
  * CSS Modules 里使用同名 CSS 变量（见 global.css 的 :root，由 cssVars 生成）。
  */
 export const colors = {
-  /** 主题红 */
-  primary: '#c6000b',
-  /** 主题红悬停 / 按下 */
-  primaryHover: '#a90009',
-  /** 选中项浅红底 */
-  primaryBg: '#fdeced',
-  primaryBg2: '#fdf2f3',
+  /** 系统主题主色 */
+  primary: '#4F89FF',
+  /** 主题悬停 / 按下 */
+  primaryHover: '#3D73E0',
+  /** 主题选中背景 */
+  primaryBg: '#EDF3FF',
+  primaryBg2: '#F4F7FF',
 
   /** 文本：标题 / 正文 / 次要 / 占位 */
   text: '#1d2129',
@@ -77,12 +77,12 @@ export const pageColors: Record<string, Record<string, string>> = {
     eye: '#b6bac2',
     divider: '#d9dde3',
     tipBg: '#f3f5f8',
-    menuActiveBg: '#fff3f3',
+    menuActiveBg: '#EDF3FF',
     menuHoverBg: '#f5f5f5',
     cardBg: '#fefefe',
-    primaryHover: '#a80009',
-    btnDisabledBg: 'rgba(198, 0, 11, 0.10)',
-    btnDisabledText: 'rgba(198, 0, 11, 0.38)',
+    primaryHover: '#3D73E0',
+    btnDisabledBg: 'rgba(79, 137, 255, 0.10)',
+    btnDisabledText: 'rgba(79, 137, 255, 0.38)',
   },
   /** 工作台（取自原型 app.css、wb.js 的 TONE） */
   workbench: {
@@ -90,8 +90,8 @@ export const pageColors: Record<string, Record<string, string>> = {
     toneOrange: '#f08200',
     toneGreen: '#2a9d4e',
     toneGray: '#b7bdc6',
-    cardHoverBorder: '#f3b9bc',
-    focusRing: '0 0 0 2px rgba(198, 0, 11, .08)',
+    cardHoverBorder: '#B9D0FF',
+    focusRing: '0 0 0 2px rgba(79, 137, 255, .08)',
     amberBg: '#fdf3e2',
     amber: '#cf8b1a',
     slateBg: '#eef0f3',
@@ -112,10 +112,10 @@ export const pageColors: Record<string, Record<string, string>> = {
     shadow: '0 12px 48px rgba(18, 20, 28, .28)',
     checkboxBorder: '#c9c9ce',
     btnBorder: '#161619',
-    btnPrimaryShadow: '0 6px 16px rgba(198, 0, 11, .22)',
-    btnPrimaryHover: '#ab0009',
-    btnDisabledBg: 'rgba(198, 0, 11, .38)',
-    focusRing: '0 0 0 3px rgba(198, 0, 11, .18)',
+    btnPrimaryShadow: '0 6px 16px rgba(79, 137, 255, .22)',
+    btnPrimaryHover: '#3D73E0',
+    btnDisabledBg: 'rgba(79, 137, 255, .38)',
+    focusRing: '0 0 0 3px rgba(79, 137, 255, .18)',
   },
   /** 吊装规划（取自原型 lift-planning.css，原型未用变量，色值全部收敛到这里） */
   lift: {
@@ -125,8 +125,8 @@ export const pageColors: Record<string, Record<string, string>> = {
     muted: '#8a9099',
     time: '#9aa0a8',
     footer: '#b7bdc6',
-    /** SMART LIFT 菜单、视图切换的选中底色（原型如此，与主题红不同） */
-    selected: '#1677ff',
+    /** SMART LIFT 菜单、视图切换的选中底色（原型如此，使用系统主题主色） */
+    selected: '#4F89FF',
     brandFrom: '#d3140f',
     brandTo: '#a30d0a',
     brandShadow: '0 8px 18px rgba(198, 0, 11, .28)',
@@ -173,7 +173,7 @@ export const pageColors: Record<string, Record<string, string>> = {
   cookies: {
     switchOff: '#d5d9e0',
     hostIcon: '#d4901f',
-    btnPrimaryHover: '#ab0009',
+    btnPrimaryHover: '#3D73E0',
   },
 };
 

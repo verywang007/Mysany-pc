@@ -9,8 +9,8 @@ export const roleColors: Record<string, string> = {
   fieldBorder: '#d6dae1',
   /** 输入框、按钮文字 */
   ink: '#30364a',
-  focusRing: '0 0 0 2px rgba(198, 0, 11, .07)',
-  fieldFocusRing: '0 0 0 2px rgba(198, 0, 11, .08)',
+  focusRing: '0 0 0 2px rgba(79, 137, 255, .07)',
+  fieldFocusRing: '0 0 0 2px rgba(79, 137, 255, .08)',
   btnDisabled: '#c2c5cc',
   btnDisabledBg: '#f5f5f5',
   /** 确认弹窗危险按钮 */
@@ -24,7 +24,7 @@ export const roleColors: Record<string, string> = {
   rowHover: '#fafafa',
   empty: '#a0a5af',
   /** 操作链接 */
-  link: '#1269e8',
+  link: '#4F89FF',
   linkDanger: '#d7000f',
   /** 标签：系统配置 / 自定义 / 设备权限类型 / 组织 */
   tagSystem: '#1269e8',

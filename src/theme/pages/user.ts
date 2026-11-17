@@ -9,7 +9,7 @@ export const userColors: Record<string, string> = {
   ctrlText: '#30364a',
   /** 浏览器默认占位文字色 */
   placeholder: '#757575',
-  focusRing: '0 0 0 2px rgba(198, 0, 11, .07)',
+  focusRing: '0 0 0 2px rgba(79, 137, 255, .07)',
   splitLine: 'rgba(255, 255, 255, .25)',
   menuShadow: '0 6px 18px rgba(0, 0, 0, .16)',
 
@@ -29,7 +29,7 @@ export const userColors: Record<string, string> = {
   orgTagBg: '#fff0dc',
   roleTag: '#1269e8',
   roleTagBg: '#eaf4ff',
-  link: '#1269e8',
+  link: '#4F89FF',
   deleteLink: '#d7000f',
 
   /** 分页 */

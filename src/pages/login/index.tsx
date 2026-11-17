@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { App, Button, Checkbox, Dropdown, Input } from 'antd';
 import { CaretDownFilled, EyeInvisibleOutlined, EyeOutlined } from '@ant-design/icons';
-import logo from '@/assets/icon-mysanyLogo.svg';
+import logo from '@/assets/sanvist-logo.png';
 import qrCorner from '@/assets/login-qr-corner.png';
 import DocModal from '@/components/DocModal';
 import {
@@ -170,7 +170,7 @@ export default function Login() {
           <div className={styles.qrTip}>{t.scanTip}</div>
 
           <div className={styles.logo}>
-            <img src={logo} alt="logo" />
+            <img src={logo} alt="SANVIST" />
           </div>
 
           <div className={styles.tabs}>

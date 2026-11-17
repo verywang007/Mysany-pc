@@ -9,7 +9,7 @@ import {
   GlobalOutlined,
   RightOutlined,
 } from '@ant-design/icons';
-import logo from '@/assets/icon-mysanyLogo.svg';
+import logo from '@/assets/sanvist-logo.png';
 import { CURRENT_TENANT, CURRENT_USER, LANGUAGE_OPTIONS, TENANT_LIST } from '@/config/app';
 import { LOGIN_PATH } from '@/router/resolve';
 import Icon from '@/components/Icon';
@@ -131,7 +131,7 @@ export default function Header({ collapsed }: Props) {
   return (
     <header className={styles.header}>
       <div className={collapsed ? `${styles.logo} ${styles.logoCollapsed}` : styles.logo}>
-        <img src={logo} alt="My SANY" />
+        <img src={logo} alt="SANVIST" />
       </div>
       <Tooltip title="场景目录">
         <button

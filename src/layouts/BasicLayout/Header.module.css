@@ -25,7 +25,9 @@
 }
 
 .logo img {
-  height: 22px;
+  width: 156px;
+  height: auto;
+  flex-shrink: 0;
   display: block;
 }
 

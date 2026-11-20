@@ -82,20 +82,56 @@ export const MENU: MenuNode[] = [
     icon: 'personnel',
     pro: true,
     children: [
-      { key: 'personnel-monitor', label: '考勤监控' },
-      { key: 'personnel-stats', label: '考勤统计' },
-      { key: 'personnel-detail', label: '考勤明细' },
-      { key: 'personnel-config', label: '考勤配置' },
+      {
+        key: 'personnel-monitor',
+        path: '/personnel/monitor',
+        systemPath: '/standard/personnel/attendanceMonitor',
+        label: '考勤监控',
+      },
+      {
+        key: 'personnel-stats',
+        path: '/personnel/stats',
+        systemPath: '/standard/personnel/attendanceStats',
+        label: '考勤统计',
+      },
+      {
+        key: 'personnel-detail',
+        path: '/personnel/detail',
+        systemPath: '/standard/personnel/attendanceDetail',
+        label: '考勤明细',
+      },
+      {
+        key: 'personnel-config',
+        path: '/personnel/config',
+        systemPath: '/standard/personnel/attendanceConfig',
+        label: '考勤配置',
+      },
     ],
   },
-  { key: 'project', label: '项目管理', icon: 'project', systemPath: '/standard/project/list' },
+  {
+    key: 'project',
+    path: '/projects',
+    label: '项目管理',
+    icon: 'project',
+    systemPath: '/standard/project/list',
+  },
   {
     key: 'monitor',
     label: '监控中心',
     icon: 'monitor',
     children: [
-      { key: 'monitor-map', label: '地图监控', systemPath: '/standard/monitor/map' },
-      { key: 'monitor-alarm', label: '预警中心', systemPath: '/standard/monitor/alarm' },
+      {
+        key: 'monitor-map',
+        path: '/monitor/map',
+        label: '地图监控',
+        systemPath: '/standard/monitor/map',
+      },
+      {
+        key: 'monitor-alarm',
+        path: '/monitor/alarm',
+        label: '预警中心',
+        systemPath: '/standard/monitor/alarm',
+      },
     ],
   },
   {

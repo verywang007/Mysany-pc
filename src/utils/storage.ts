@@ -5,6 +5,11 @@
  */
 export const STORAGE_KEYS = {
   devices: 'ms_devices',
+  projects: 'ms_projects',
+  attendanceRecords: 'ms_attendance_records',
+  attendanceRules: 'ms_attendance_rules',
+  attendanceHolidays: 'ms_attendance_holidays',
+  monitorAlarms: 'ms_monitor_alarms',
   auditEvents: 'ms_audit_events',
   auditSettings: 'ms_audit_settings',
   /** 设置：Cookie 各分类开关 + 个性化广告（登录后「设置」弹窗读写） */
